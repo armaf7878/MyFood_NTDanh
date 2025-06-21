@@ -1,6 +1,7 @@
 package com.example.myfood_ngothanhdanh.DAO_NTDanh;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -33,5 +34,15 @@ public class cartDAO_NTDanh {
         return cart_ntDanhList;
     }
 
-    public
+    public List<cart_NTDanh> getAll_NTDanh (){
+        String sql = "SELECT * FROM cart";
+        return get(sql);
+    }
+    public long insert_NTDanh(cart_NTDanh cartNtDanh){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("food_id", cartNtDanh.getFoodID());
+        contentValues.put("user_id", cartNtDanh.getUserID());
+        contentValues.put("quantity", cartNtDanh.getQuantity());
+        return db.insert("cart", null, contentValues);
+    }
 }

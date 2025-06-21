@@ -1,6 +1,7 @@
 package com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -15,9 +16,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
+import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+
+import java.util.List;
 
 public class Food_Detail_NTDanh extends AppCompatActivity {
     private int foodID = 0;
@@ -26,6 +31,7 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
     private AppCompatButton btn_descrease_NTDanh, btn_incresase_NTDanh;
     private ImageButton btn_cart_NTDanh, btn_back_NTDanh;
     private ImageView img_FoodImg_NTDanh;
+    private boolean checked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +78,31 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
             });
 
             btn_cart_NTDanh.setOnClickListener(view -> {
-                Bundle bundle = new Bundle();
-                bundle.putInt("FoodID", foodID);
-                bundle.putInt("Quantity", quantity);
-                Intent intent = new Intent(Food_Detail_NTDanh.this, Order_NTDanh.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                SharedPreferences sharedPreferences  = getSharedPreferences("Session", MODE_PRIVATE);
+                int userID  = sharedPreferences.getInt("UserID", -1);
+                cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(this);
+                List<cart_NTDanh> cartList = cartDAO_ntDanh.getAll_NTDanh();
+                for (cart_NTDanh cartNtDanh1 : cartList){
+                    if(cartNtDanh1.getFoodID() == foodID && cartNtDanh1.getUserID() == userID){
+                        checked = true;
+                    }
+                }
+                if (checked != true){
+                    cart_NTDanh cartNtDanh = new cart_NTDanh(userID, quantity , foodID);
+                    long i = cartDAO_ntDanh.insert_NTDanh(cartNtDanh);
+                    if (i != -1){
+                        Intent intent = new Intent(Food_Detail_NTDanh.this, Order_NTDanh.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(this, "Thêm món ăn thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Food_Detail_NTDanh.this, Order_NTDanh.class);
+                    startActivity(intent);
+                }
+
+
             });
 
         }
@@ -92,7 +117,7 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
         if (bundle!=null){
             foodID = bundle.getInt("FoodID");
         }else {
-            Toast.makeText(this, "Lấy ID nhà hàng thất bại", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lấy ID food thất bại", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -1,11 +1,5 @@
 package com.example.myfood_ngothanhdanh.Database_NTDanh;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
-
 public class createtable_NTDanh {
     public static final String CREATE_TABLE_ORDER_NTDANH =
             "CREATE TABLE orders(" +
@@ -61,13 +55,13 @@ public class createtable_NTDanh {
                     ");";
 
     public static final String CREATE_TABLE_CART_NTDANH =
-            "CREATE TABLE food(" +
+            "CREATE TABLE cart(" +
                     "cart_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "user_id INTEGER NOT NULL," +
                     "food_id INTEGER NOT NULL," +
                     "quantity INTEGER NOT NULL," +
                     "FOREIGN KEY (user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE," +
-                    "FOREIGN KEY (food_id) REFERENCES food(food_id) ON DELETE CASCADE ON UPDATE CASCADE," +
+                    "FOREIGN KEY (food_id) REFERENCES food(food_id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
 
 
