@@ -1,5 +1,7 @@
-🍽️ MyFood App – Đặt Đồ Ăn Nhanh Chóng & Thuận Tiện
-MyFood là ứng dụng Android cho phép người dùng đặt đồ ăn trực tuyến từ các quán ăn đã liên kết. Ứng dụng hỗ trợ quản lý tài khoản, giỏ hàng, đơn hàng, xem chi tiết món ăn và tương tác với hệ thống qua API và cơ sở dữ liệu cục bộ.
+# 🍽️ MyFood App – Đặt Đồ Ăn Nhanh Chóng & Thuận Tiện
+MyFood là ứng dụng Android cho phép người dùng đặt đồ ăn trực tuyến từ các quán ăn đã liên kết. Ứng dụng hỗ trợ quản lý tài khoản, giỏ hàng, đơn hàng, xem chi tiết món ăn và tương tác với hệ thống qua API và cơ 
+sở dữ liệu cục bộ.
+
 ---
 ## 🚀 Tính Năng Chính
 - **🔐 Đăng ký & Đăng nhập người dùng**  
