@@ -7,16 +7,20 @@ public class orders_NTDanh {
     private String order_address;
     private String order_date;
     private String order_status;
+    private String order_name;
+    private String order_phone;
     private int user_ID;
     public orders_NTDanh() {
     }
 
 
-    public orders_NTDanh(int user_ID, String order_status, String order_date, String order_address) {
+    public orders_NTDanh(int user_ID,String order_name, String order_phone, String order_status, String order_date, String order_address) {
         this.user_ID = user_ID;
         this.order_status = order_status;
         this.order_date = order_date;
         this.order_address = order_address;
+        this.order_name = order_name;
+        this.order_phone = order_phone;
     }
 
 
@@ -59,4 +63,20 @@ public class orders_NTDanh {
     public void setUser_ID(int user_ID) {
         this.user_ID = user_ID;
     }
+    public String getOrder_phone() {
+        return order_phone;
+    }
+
+    public void setOrder_phone(String order_phone) {
+        this.order_phone = order_phone;
+    }
+
+    public String getOrder_name() {
+        return order_name;
+    }
+
+    public void setOrder_name(String order_name) {
+        this.order_name = order_name;
+    }
+
 }

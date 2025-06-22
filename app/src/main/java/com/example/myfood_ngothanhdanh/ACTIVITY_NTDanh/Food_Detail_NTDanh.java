@@ -78,31 +78,7 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
             });
 
             btn_cart_NTDanh.setOnClickListener(view -> {
-                SharedPreferences sharedPreferences  = getSharedPreferences("Session", MODE_PRIVATE);
-                int userID  = sharedPreferences.getInt("UserID", -1);
-                cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(this);
-                List<cart_NTDanh> cartList = cartDAO_ntDanh.getAll_NTDanh();
-                for (cart_NTDanh cartNtDanh1 : cartList){
-                    if(cartNtDanh1.getFoodID() == foodID && cartNtDanh1.getUserID() == userID){
-                        checked = true;
-                    }
-                }
-                if (checked != true){
-                    cart_NTDanh cartNtDanh = new cart_NTDanh(userID, quantity , foodID);
-                    long i = cartDAO_ntDanh.insert_NTDanh(cartNtDanh);
-                    if (i != -1){
-                        Intent intent = new Intent(Food_Detail_NTDanh.this, Order_NTDanh.class);
-                        startActivity(intent);
-                    }else {
-                        Toast.makeText(this, "Thêm món ăn thất bại", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Food_Detail_NTDanh.this, Order_NTDanh.class);
-                    startActivity(intent);
-                }
-
-
+                checkFoodExists_NTDanh();
             });
 
         }
@@ -118,6 +94,31 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
             foodID = bundle.getInt("FoodID");
         }else {
             Toast.makeText(this, "Lấy ID food thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void checkFoodExists_NTDanh(){
+        SharedPreferences sharedPreferences  = getSharedPreferences("Session", MODE_PRIVATE);
+        int userID  = sharedPreferences.getInt("UserID", -1);
+        cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(this);
+        List<cart_NTDanh> cartList = cartDAO_ntDanh.getAll_NTDanh();
+        for (cart_NTDanh cartNtDanh1 : cartList){
+            if(cartNtDanh1.getFoodID() == foodID && cartNtDanh1.getUserID() == userID){
+                checked = true;
+            }
+        }
+        if (checked != true){
+            cart_NTDanh cartNtDanh = new cart_NTDanh(userID, quantity , foodID);
+            long i = cartDAO_ntDanh.insert_NTDanh(cartNtDanh);
+            if (i != -1){
+                Intent intent = new Intent(Food_Detail_NTDanh.this, Cart_NTDanh.class);
+                startActivity(intent);
+            }else {
+                Toast.makeText(this, "Thêm món ăn thất bại", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Food_Detail_NTDanh.this, Cart_NTDanh.class);
+            startActivity(intent);
         }
     }
 }

@@ -6,6 +6,8 @@ public class createtable_NTDanh {
                     "order_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "order_address TEXT NOT NULL," +
                     "order_date TEXT NOT NULL," +
+                    "order_name TEXT NOT NULL," +
+                    "order_phone TEXT NOT NULL," +
                     "order_status TEXT NOT NULL," +
                     "user_ID INTEGER NOT NULL," +
                     "FOREIGN KEY (user_ID) REFERENCES user(user_id) " +
@@ -24,6 +26,7 @@ public class createtable_NTDanh {
 
     public static final String CREATE_TABLE_ORDERDETAIL_NTDANH =
             "CREATE TABLE order_detail(" +
+                    "order_detail_ìd INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "order_id INTEGER NOT NULL," +
                     "food_id INTEGER NOT NULL," +
                     "order_detail_size TEXT NOT NULL," +

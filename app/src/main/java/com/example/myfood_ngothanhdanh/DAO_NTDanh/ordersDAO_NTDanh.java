@@ -1,6 +1,7 @@
 package com.example.myfood_ngothanhdanh.DAO_NTDanh;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,6 +32,8 @@ public class ordersDAO_NTDanh {
             orders_ntDanh.setOrder_address(cursor.getString(cursor.getColumnIndexOrThrow("order_address")));
             orders_ntDanh.setOrder_date(cursor.getString(cursor.getColumnIndexOrThrow("order_date")));
             orders_ntDanh.setUser_ID(cursor.getInt(cursor.getColumnIndexOrThrow("user_ID")));
+            orders_ntDanh.setOrder_name(cursor.getString(cursor.getColumnIndexOrThrow("order_name")));
+            orders_ntDanh.setOrder_phone(cursor.getString(cursor.getColumnIndexOrThrow("order_phone")));
             orders_ntDanh.setOrder_status(cursor.getString(cursor.getColumnIndexOrThrow("order_status")));
             orders_ntDanhList.add(orders_ntDanh);
         }
@@ -41,5 +44,17 @@ public class ordersDAO_NTDanh {
     public List<orders_NTDanh> getAll(){
         String sql = "SELECT * FROM orders";
         return get(sql);
+    }
+
+    public long insert_NTDanh(orders_NTDanh orders_ntDanh){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("order_address", orders_ntDanh.getOrder_address());
+        contentValues.put("order_date", orders_ntDanh.getOrder_date());
+        contentValues.put("user_ID", orders_ntDanh.getUser_ID());
+        contentValues.put("order_name", orders_ntDanh.getOrder_name());
+        contentValues.put("order_phone", orders_ntDanh.getOrder_phone());
+        contentValues.put("order_status", orders_ntDanh.getOrder_status());
+
+        return db.insert("orders", null, contentValues);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myfood_ngothanhdanh.Modle_NTDanh;
 
 public class order_detail_NTDanh {
+    private int order_detail_id;
     private int order_id;
     private int food_id;
     private String order_detail_size;
@@ -57,5 +58,12 @@ public class order_detail_NTDanh {
 
     public void setOrder_detail_quantity(int order_detail_quantity) {
         this.order_detail_quantity = order_detail_quantity;
+    }
+    public int getOrder_detail_id() {
+        return order_detail_id;
+    }
+
+    public void setOrder_detail_id(int order_detail_id) {
+        this.order_detail_id = order_detail_id;
     }
 }

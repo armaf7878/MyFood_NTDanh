@@ -1,6 +1,7 @@
 package com.example.myfood_ngothanhdanh.DAO_NTDanh;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,6 +26,7 @@ public class order_detailDAO_NTDanh {
         Cursor cursor = db.rawQuery(sql, selectArgs);
         while (cursor.moveToNext()){
             order_detail_NTDanh orderDetailNtDanh = new order_detail_NTDanh();
+            orderDetailNtDanh.setOrder_detail_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_detail_ìd")));
             orderDetailNtDanh.setOrder_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_id")));
             orderDetailNtDanh.setFood_id(cursor.getInt(cursor.getColumnIndexOrThrow("food_id")));
             orderDetailNtDanh.setOrder_detail_size(cursor.getString(cursor.getColumnIndexOrThrow("order_detail_size")));
@@ -39,5 +41,15 @@ public class order_detailDAO_NTDanh {
     public List<order_detail_NTDanh> getAll(){
         String sql = "SELECT * FROM order_detail";
         return get(sql);
+    }
+
+    public long insert_NTDanh (order_detail_NTDanh order_detail_ntDanh){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("order_id", order_detail_ntDanh.getOrder_id());
+        contentValues.put("food_id", order_detail_ntDanh.getFood_id());
+        contentValues.put("order_detail_size", order_detail_ntDanh.getOrder_detail_size());
+        contentValues.put("order_detail_food", order_detail_ntDanh.getOrder_detail_food());
+        contentValues.put("order_detail_quantity", order_detail_ntDanh.getOrder_detail_quantity());
+        return db.insert("order_detail", null, contentValues);
     }
 }

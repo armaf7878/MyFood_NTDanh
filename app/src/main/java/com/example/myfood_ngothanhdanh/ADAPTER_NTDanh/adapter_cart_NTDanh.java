@@ -1,5 +1,8 @@
 package com.example.myfood_ngothanhdanh.ADAPTER_NTDanh;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +13,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Order_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDanh.ViewHolder> {
     private List<cart_NTDanh> cart_ntDanhList;
+    private List<Integer> checkListFoodID_NTDanh = new ArrayList<>();;
     public adapter_cart_NTDanh(List<cart_NTDanh> cart_ntDanhList){
         this.cart_ntDanhList = cart_ntDanhList;
     }
@@ -51,12 +57,29 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
         holder.txt_FoodName_NTDanh.setText(food_ntDanh.getFood_name());
         holder.txt_price_NTDanh.setText(String.valueOf(food_ntDanh.getFood_price() * cartNtDanh.getQuantity()));
         holder.img_FoodImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
+
+        holder.checkBox_NTDanh.setOnClickListener(view -> {
+            if (holder.checkBox_NTDanh.isChecked()){
+                checkListFoodID_NTDanh.add(cartNtDanh.getCartID());
+            }else{
+                checkListFoodID_NTDanh.remove(Integer.valueOf(cartNtDanh.getCartID()));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return cart_ntDanhList.size();
     }
+
+    public void checkListFood_NTDanh(Context context){
+        Bundle bundle = new Bundle();
+        bundle.putIntegerArrayList("CartID", new ArrayList<>(checkListFoodID_NTDanh));
+        Intent intent = new Intent(context, Order_NTDanh.class);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+    }
+
 
 
 }

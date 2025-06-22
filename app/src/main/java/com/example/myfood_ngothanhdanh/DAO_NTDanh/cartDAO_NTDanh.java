@@ -38,6 +38,15 @@ public class cartDAO_NTDanh {
         String sql = "SELECT * FROM cart";
         return get(sql);
     }
+
+    public cart_NTDanh getByID_NTDanh (int cartID){
+        String sql = "SELECT * FROM cart WHERE cart_id=?";
+        List<cart_NTDanh> cart_ntDanhList = get(sql, String.valueOf(cartID));
+        if (cart_ntDanhList.size()>0){
+            return cart_ntDanhList.get(0);
+        }
+        return null;
+    }
     public long insert_NTDanh(cart_NTDanh cartNtDanh){
         ContentValues contentValues = new ContentValues();
         contentValues.put("food_id", cartNtDanh.getFoodID());
