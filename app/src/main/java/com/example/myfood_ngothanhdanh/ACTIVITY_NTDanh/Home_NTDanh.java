@@ -27,26 +27,26 @@ public class Home_NTDanh extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_ntdanh);
         restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(this);
-//        restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
-//        restaurant_ntDanh.setRes_name("Lẩu cua đồng Yên Lãng");
-//        restaurant_ntDanh.setRes_phone("0353991094");
-//        restaurant_ntDanh.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
-//        restaurant_ntDanh.setRes_img(R.drawable.store_lau);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh);
-//
-//        restaurant_NTDanh restaurant_ntDanh1 = new restaurant_NTDanh();
-//        restaurant_ntDanh1.setRes_name("Bánh mì Dân Tổ");
-//        restaurant_ntDanh1.setRes_phone("0353991094");
-//        restaurant_ntDanh1.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
-//        restaurant_ntDanh1.setRes_img(R.drawable.store_banhmi);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh1);
-//
-//        restaurant_NTDanh restaurant_ntDanh2 = new restaurant_NTDanh();
-//        restaurant_ntDanh2.setRes_name("Phở Lý Quốc Sư");
-//        restaurant_ntDanh2.setRes_phone("093323327");
-//        restaurant_ntDanh2.setRes_address("14 Nguyễn Oanh, Phường 17, Quận Gò Vấp, Hồ Chí Minh");
-//        restaurant_ntDanh2.setRes_img(R.drawable.store_pho);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh2);
+        restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
+        restaurant_ntDanh.setRes_name("Lẩu cua đồng Yên Lãng");
+        restaurant_ntDanh.setRes_phone("0353991094");
+        restaurant_ntDanh.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
+        restaurant_ntDanh.setRes_img(R.drawable.store_lau);
+        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh);
+
+        restaurant_NTDanh restaurant_ntDanh1 = new restaurant_NTDanh();
+        restaurant_ntDanh1.setRes_name("Bánh mì Dân Tổ");
+        restaurant_ntDanh1.setRes_phone("0353991094");
+        restaurant_ntDanh1.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
+        restaurant_ntDanh1.setRes_img(R.drawable.store_banhmi);
+        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh1);
+
+        restaurant_NTDanh restaurant_ntDanh2 = new restaurant_NTDanh();
+        restaurant_ntDanh2.setRes_name("Phở Lý Quốc Sư");
+        restaurant_ntDanh2.setRes_phone("093323327");
+        restaurant_ntDanh2.setRes_address("14 Nguyễn Oanh, Phường 17, Quận Gò Vấp, Hồ Chí Minh");
+        restaurant_ntDanh2.setRes_img(R.drawable.store_pho);
+        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh2);
 
         restaurant_ntDanhList = restaurantDAO_ntDanh.getAll();
         RecyclerHome = findViewById(R.id.RecyclerHome);
