@@ -34,7 +34,7 @@ sở dữ liệu cục bộ.
 ---
 ## ▶️ Hướng Dẫn Chạy Ứng Dụng
 
-- Clone repo: git clone https://github.com/your-username/MyFood_NgoThanhDanh.git
+- Clone repo: git clone https://github.com/armaf7878/MyFood_NTDanh.git
 - **Lưu ý: Sau khi khởi chạy app lần đầu, những lần tiếp theo hãy comment các dòng:**
     - (30->49 Home_NTDanh.Java)
     - (55->87 Food_NTDanh.Java)
