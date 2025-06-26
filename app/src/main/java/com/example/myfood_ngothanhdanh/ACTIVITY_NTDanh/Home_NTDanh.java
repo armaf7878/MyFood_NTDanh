@@ -28,7 +28,7 @@ public class Home_NTDanh extends AppCompatActivity {
         setContentView(R.layout.activity_home_ntdanh);
         restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(this);
         restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
-        restaurant_ntDanh.setRes_name("Lẩu cua đồng Yên Lãng");
+        restaurant_ntDanh.setRes_name("Lẩu cua đồng quê");
         restaurant_ntDanh.setRes_phone("0353991094");
         restaurant_ntDanh.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
         restaurant_ntDanh.setRes_img(R.drawable.store_lau);

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,20 +20,16 @@ import com.example.myfood_ngothanhdanh.Modle_NTDanh.user_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
 public class Login_NTDanh extends AppCompatActivity {
-    private Button btnDangKy_NTDanh, btnDangNhap_NTDanh;
+    private Button btnDangNhap_NTDanh;
     private EditText edtUserName_NTDanh, edtPass_NTDanh;
     private String username, pass;
+    private ImageView btn_close_NTDanh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        btnDangKy_NTDanh = findViewById(R.id.btnDangKy_NTDanh);
-        btnDangKy_NTDanh.setOnClickListener(view -> {
-            Intent intent = new Intent(this, Register_NTDanh.class);
-            startActivity(intent);
-        });
         btnDangNhap_NTDanh = findViewById(R.id.btnDangNhap_NTDanh);
         edtUserName_NTDanh = findViewById(R.id.edtUserName_NTDanh);
         edtPass_NTDanh = findViewById(R.id.edtPass_NTDanh);
@@ -56,6 +54,8 @@ public class Login_NTDanh extends AppCompatActivity {
                 Toast.makeText(this, "Không kiếm thấy username", Toast.LENGTH_SHORT).show();
             }
         });
+        btn_close_NTDanh = findViewById(R.id.btn_close_NTDanh);
+        btn_close_NTDanh.setOnClickListener(view -> {finish();});
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

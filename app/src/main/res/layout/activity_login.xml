@@ -6,62 +6,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ACTIVITY_NTDanh.Login_NTDanh">
+
+    <ImageView
+        android:id="@+id/btn_close_NTDanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.899"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014"
+        app:srcCompat="@drawable/icon_close" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DANH EAT"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Đăng nhập"
-        android:textColor="#000000"
+        android:fontFamily="@font/font_normal"
+        android:text="LOGIN"
+        android:textColor="@color/text_color_white"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_close_NTDanh"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/edtUserName_NTDanh"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="Tên đăng nhập"
+        android:hint="Username"
+        android:textColorHint="@color/hint_color_gray"
+        android:fontFamily="@font/font_normal"
         android:inputType="text"
+        android:textColor="@color/text_color_white"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:paddingLeft="25dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/edtPass_NTDanh"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="64dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="Mật khẩu đăng nhập"
-        android:inputType="text"
+        android:hint="Password"
+        android:textColorHint="@color/hint_color_gray"
+        android:fontFamily="@font/font_normal"
+        android:textColor="@color/text_color_white"
+        android:inputType="textPassword"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:paddingLeft="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtUserName_NTDanh" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -72,21 +86,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPass_NTDanh">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDangNhap_NTDanh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
             android:layout_weight="1"
-            android:backgroundTint="#000000"
-            android:text="Đăng nhập" />
-
-        <Button
-            android:id="@+id/btnDangKy_NTDanh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#525252"
-            android:text="Đăng ký" />
+            android:backgroundTint="@color/white"
+            android:text="Đăng nhập"
+            android:textColor="@color/text_color_black"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="#A0A0A0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/font_normal"
+            android:text="Login With Google"
+            android:textAlignment="center"
+            app:icon="@drawable/icon_google"
+            app:iconGravity="textStart"
+            app:iconSize="30dp"
+            app:iconTint="@null"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton2"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/font_normal"
+            android:text="Login With Facebook"
+            android:textAlignment="center"
+            app:icon="@drawable/icon_facebook"
+            app:iconGravity="textStart"
+            app:iconSize="30dp"
+            app:iconTint="@null"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/font_normal"
+            android:text="Login With Phone"
+            android:textAlignment="center"
+            app:icon="@drawable/icon_phone"
+            app:iconGravity="textStart"
+            app:iconSize="30dp"
+            app:iconTint="@null"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
