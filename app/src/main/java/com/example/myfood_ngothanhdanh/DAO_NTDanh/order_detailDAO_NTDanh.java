@@ -29,9 +29,8 @@ public class order_detailDAO_NTDanh {
             orderDetailNtDanh.setOrder_detail_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_detail_ìd")));
             orderDetailNtDanh.setOrder_id(cursor.getInt(cursor.getColumnIndexOrThrow("order_id")));
             orderDetailNtDanh.setFood_id(cursor.getInt(cursor.getColumnIndexOrThrow("food_id")));
-            orderDetailNtDanh.setOrder_detail_size(cursor.getString(cursor.getColumnIndexOrThrow("order_detail_size")));
-            orderDetailNtDanh.setOrder_detail_food(cursor.getString(cursor.getColumnIndexOrThrow("order_detail_food")));
-            orderDetailNtDanh.setOrder_detail_quantity(cursor.getInt(cursor.getColumnIndexOrThrow("order_detail_quantity")));
+            orderDetailNtDanh.setSub_total(cursor.getDouble(cursor.getColumnIndexOrThrow("sub_total")));
+            orderDetailNtDanh.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow("quantity")));
             orderDetailNtDanhList.add(orderDetailNtDanh);
         }
         cursor.close();
@@ -47,9 +46,8 @@ public class order_detailDAO_NTDanh {
         ContentValues contentValues = new ContentValues();
         contentValues.put("order_id", order_detail_ntDanh.getOrder_id());
         contentValues.put("food_id", order_detail_ntDanh.getFood_id());
-        contentValues.put("order_detail_size", order_detail_ntDanh.getOrder_detail_size());
-        contentValues.put("order_detail_food", order_detail_ntDanh.getOrder_detail_food());
-        contentValues.put("order_detail_quantity", order_detail_ntDanh.getOrder_detail_quantity());
+        contentValues.put("quantity", order_detail_ntDanh.getQuantity());
+        contentValues.put("sub_total", order_detail_ntDanh.getSub_total());
         return db.insert("order_detail", null, contentValues);
     }
 }

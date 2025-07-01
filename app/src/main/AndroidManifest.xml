@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFood_NgoThanhDanh"
         tools:targetApi="31">
-
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".ACTIVITY_NTDanh.Order_NTDanh"
             android:exported="false" />
@@ -24,7 +27,7 @@
             android:name=".ACTIVITY_NTDanh.Food_Detail_NTDanh"
             android:exported="false" />
         <activity
-            android:name=".ACTIVITY_NTDanh.Food_NTDanh"
+            android:name=".ACTIVITY_NTDanh.FoodInRes_NTDanh"
             android:exported="false" />
         <activity
             android:name=".ACTIVITY_NTDanh.Home_NTDanh"
@@ -36,7 +39,7 @@
             android:name=".ACTIVITY_NTDanh.Login_NTDanh"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

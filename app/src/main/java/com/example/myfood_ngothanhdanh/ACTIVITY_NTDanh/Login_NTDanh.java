@@ -16,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.userDAO_NTDanh;
+import com.example.myfood_ngothanhdanh.MainActivity;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.user_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
@@ -45,7 +46,7 @@ public class Login_NTDanh extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("UserID", userNtDanh.getUser_id());
                     editor.apply();
-                    Intent intent = new Intent(this, Home_NTDanh.class);
+                    Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                 }else {
                     Toast.makeText(this, "Sai mật khẩu", Toast.LENGTH_SHORT).show();

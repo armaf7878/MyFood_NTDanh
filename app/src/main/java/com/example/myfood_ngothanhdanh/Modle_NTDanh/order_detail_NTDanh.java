@@ -4,17 +4,15 @@ public class order_detail_NTDanh {
     private int order_detail_id;
     private int order_id;
     private int food_id;
-    private String order_detail_size;
-    private String order_detail_food;
-    private int order_detail_quantity;
+    private int quantity;
+    private Double sub_total;
 
 
-    public order_detail_NTDanh(int order_id, int food_id, String order_detail_size, String order_detail_food, int order_detail_quantity) {
+    public order_detail_NTDanh(int order_id, int food_id, int quantity, Double sub_total ) {
         this.order_id = order_id;
         this.food_id = food_id;
-        this.order_detail_size = order_detail_size;
-        this.order_detail_food = order_detail_food;
-        this.order_detail_quantity = order_detail_quantity;
+        this.quantity = quantity;
+        this.sub_total = sub_total;
     }
 
     public order_detail_NTDanh() {
@@ -36,29 +34,22 @@ public class order_detail_NTDanh {
         this.food_id = food_id;
     }
 
-    public String getOrder_detail_size() {
-        return order_detail_size;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setOrder_detail_size(String order_detail_size) {
-        this.order_detail_size = order_detail_size;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getOrder_detail_food() {
-        return order_detail_food;
+    public Double getSub_total() {
+        return sub_total;
     }
 
-    public void setOrder_detail_food(String order_detail_food) {
-        this.order_detail_food = order_detail_food;
+    public void setSub_total(Double sub_total) {
+        this.sub_total = sub_total;
     }
 
-    public int getOrder_detail_quantity() {
-        return order_detail_quantity;
-    }
-
-    public void setOrder_detail_quantity(int order_detail_quantity) {
-        this.order_detail_quantity = order_detail_quantity;
-    }
     public int getOrder_detail_id() {
         return order_detail_id;
     }

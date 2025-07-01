@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
     android:orientation="horizontal"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:background="@drawable/rounded"
+    android:backgroundTint="@color/white"
+    android:padding="10dp">
 
 
     <ImageView
         android:id="@+id/imageRes"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        tools:srcCompat="@tools:sample/avatars"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:layout_marginRight="5dp"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:src="@drawable/store_lau"
+        android:layout_marginRight="10dp"
+        android:clipToOutline="true"
         android:layout_gravity="center_vertical"/>
 
     <LinearLayout
@@ -31,7 +36,7 @@
             android:layout_height="0dp"
             android:text="TextView"
             android:layout_weight="0.8"
-            android:textAlignment="center"
+            android:fontFamily="@font/font_normal"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -41,15 +46,17 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="TextView"
+            android:fontFamily="@font/font_light_italic"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.6"
             android:backgroundTint="#000000"
-            android:text="Lưu Thông Tin" />
+            android:text="Xem cửa hàng"
+            android:fontFamily="@font/font_normal"/>
 
     </LinearLayout>
 </LinearLayout>

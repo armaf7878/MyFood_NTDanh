@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Food_NTDanh;
+import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.FoodInRes_NTDanh;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
@@ -51,7 +50,7 @@ public class adapter_restaurant_NTDanh extends RecyclerView.Adapter<adapter_rest
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putInt("ResID", restaurant_ntDanh.getRes_id());
-            Intent intent = new Intent(holder.itemView.getContext(), Food_NTDanh.class);
+            Intent intent = new Intent(holder.itemView.getContext(), FoodInRes_NTDanh.class);
             intent.putExtras(bundle);
             holder.itemView.getContext().startActivity(intent);
         });

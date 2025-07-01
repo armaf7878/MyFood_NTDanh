@@ -54,4 +54,14 @@ public class cartDAO_NTDanh {
         contentValues.put("quantity", cartNtDanh.getQuantity());
         return db.insert("cart", null, contentValues);
     }
+
+    public int delete_cartByID_NTDanh(int id){
+        return db.delete("cart", "cart_id=?", new String[]{String.valueOf(id)});
+    }
+
+    public int update_cartQuantityByID_NTDanh(int id, int quantity){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("quantity", quantity);
+        return db.update("cart", contentValues, "cart_id=?", new String[]{String.valueOf(String.valueOf(id))});
+    }
 }

@@ -28,10 +28,10 @@ public class foodDAO_NTDanh {
             food_NTDanh food_ntDanh = new food_NTDanh();
             food_ntDanh.setFood_id(cursor.getInt(cursor.getColumnIndexOrThrow("food_id")));
             food_ntDanh.setFood_name(cursor.getString(cursor.getColumnIndexOrThrow("food_name")));
-            food_ntDanh.setFood_type(cursor.getString(cursor.getColumnIndexOrThrow("food_type")));
             food_ntDanh.setFood_des(cursor.getString(cursor.getColumnIndexOrThrow("food_des")));
             food_ntDanh.setFood_img(cursor.getInt(cursor.getColumnIndexOrThrow("food_img")));
             food_ntDanh.setRes_id(cursor.getInt(cursor.getColumnIndexOrThrow("res_id")));
+            food_ntDanh.setCate_id(cursor.getInt(cursor.getColumnIndexOrThrow("cate_id")));
             food_ntDanh.setFood_price(cursor.getDouble(cursor.getColumnIndexOrThrow("food_price")));
             food_ntDanhList.add(food_ntDanh);
         }
@@ -62,7 +62,7 @@ public class foodDAO_NTDanh {
     public long insertFood_NTDanh(food_NTDanh food_ntDanh){
         ContentValues contentValues = new ContentValues();
         contentValues.put("food_name", food_ntDanh.getFood_name());
-        contentValues.put("food_type", food_ntDanh.getFood_type());
+        contentValues.put("cate_id", food_ntDanh.getCate_id());
         contentValues.put("food_des", food_ntDanh.getFood_des());
         contentValues.put("food_img",food_ntDanh.getFood_img());
         contentValues.put("res_id", food_ntDanh.getRes_id());

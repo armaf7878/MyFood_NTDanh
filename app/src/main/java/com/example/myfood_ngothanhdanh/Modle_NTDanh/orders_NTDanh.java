@@ -6,7 +6,6 @@ public class orders_NTDanh {
     private int order_id;
     private String order_address;
     private String order_date;
-    private String order_status;
     private String order_name;
     private String order_phone;
     private int user_ID;
@@ -14,9 +13,8 @@ public class orders_NTDanh {
     }
 
 
-    public orders_NTDanh(int user_ID,String order_name, String order_phone, String order_status, String order_date, String order_address) {
+    public orders_NTDanh(int user_ID,String order_name, String order_phone, String order_date, String order_address) {
         this.user_ID = user_ID;
-        this.order_status = order_status;
         this.order_date = order_date;
         this.order_address = order_address;
         this.order_name = order_name;
@@ -46,14 +44,6 @@ public class orders_NTDanh {
 
     public void setOrder_date(String order_date) {
         this.order_date = order_date;
-    }
-
-    public String getOrder_status() {
-        return order_status;
-    }
-
-    public void setOrder_status(String order_status) {
-        this.order_status = order_status;
     }
 
     public int getUser_ID() {

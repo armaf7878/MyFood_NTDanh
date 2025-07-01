@@ -8,16 +8,18 @@ public class user_NTDanh {
     private String user_phone;
     private String user_name;
     private String user_pass;
+    private int role_id;
     public user_NTDanh() {
     }
 
-    public user_NTDanh(String user_pass, String user_name, String user_phone, String user_birthday, String user_gender, String user_fullname) {
+    public user_NTDanh(String user_pass, String user_name, String user_phone, String user_birthday, String user_gender, String user_fullname, int role_id) {
         this.user_pass = user_pass;
         this.user_name = user_name;
         this.user_phone = user_phone;
         this.user_birthday = user_birthday;
         this.user_gender = user_gender;
         this.user_fullname = user_fullname;
+        this.role_id = role_id;
     }
 
 
@@ -76,5 +78,12 @@ public class user_NTDanh {
 
     public void setUser_pass(String user_pass) {
         this.user_pass = user_pass;
+    }
+    public int getRole_id() {
+        return role_id;
+    }
+
+    public void setRole_id(int role_id) {
+        this.role_id = role_id;
     }
 }

@@ -92,7 +92,6 @@ public class Order_NTDanh extends AppCompatActivity {
                 orders_ntDanh.setOrder_phone(order_phone);
                 orders_ntDanh.setOrder_address(order_address);
                 orders_ntDanh.setOrder_date(date);
-                orders_ntDanh.setOrder_status("Đơn chờ duyệt");
 
                 ordersDAO_NTDanh ordersDAO_ntDanh = new ordersDAO_NTDanh(this);
                 long orderID = ordersDAO_ntDanh.insert_NTDanh(orders_ntDanh);
@@ -107,9 +106,8 @@ public class Order_NTDanh extends AppCompatActivity {
                         order_detail_NTDanh order_detail_ntDanh = new order_detail_NTDanh();
                         order_detail_ntDanh.setOrder_id(Integer.parseInt(String.valueOf(orderID)));
                         order_detail_ntDanh.setFood_id(cartNtDanh.getFoodID());
-                        order_detail_ntDanh.setOrder_detail_food(food_ntDanh.getFood_name());
-                        order_detail_ntDanh.setOrder_detail_quantity(cartNtDanh.getQuantity());
-                        order_detail_ntDanh.setOrder_detail_size("Vừa");
+                        order_detail_ntDanh.setQuantity(cartNtDanh.getQuantity());
+                        order_detail_ntDanh.setSub_total(3500.0);
 
                         order_detailDAO_NTDanh orderDetailDAONtDanh = new order_detailDAO_NTDanh(this);
                         long checked = orderDetailDAONtDanh.insert_NTDanh(order_detail_ntDanh);

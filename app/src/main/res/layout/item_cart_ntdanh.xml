@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="15dp"
-    android:gravity="center_vertical">
+    android:layout_height="150dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/rounded"
+    android:backgroundTint="@color/white"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp">
 
     <CheckBox
         android:id="@+id/checkBox_NTDanh"
@@ -16,12 +19,12 @@
     <ImageView
         android:id="@+id/img_FoodImg_NTDanh"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.8"
-        tools:srcCompat="@tools:sample/avatars"
+        android:layout_height="100dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.3"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:layout_marginRight="10dp"/>
+        android:src="@drawable/food_phobo" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -36,22 +39,69 @@
             android:layout_height="wrap_content"
             android:text="Tên món"
             android:textStyle="bold"
-            android:textSize="25sp"/>
+            android:textSize="25sp"
+            android:fontFamily="@font/font_bold"/>
 
-        <TextView
-            android:id="@+id/txt_quantity_NTDanh"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Số lượng"
-            android:textStyle="italic"
-            android:textSize="15sp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/btn_descrease_NTDanh"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/black"
+                android:text="-"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/txt_quantity_NTDanh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/btn_incresase_NTDanh"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/black"
+                android:text="+"
+                android:textColor="@color/text_color_white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete_NTDanh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/hint_color_gray"
+                android:text="Xóa"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/txt_price_NTDanh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Thành tiền"
-            android:textStyle="italic"
-            android:textSize="15sp"/>
+            android:fontFamily="@font/font_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"/>
     </LinearLayout>
+
 
 </LinearLayout>

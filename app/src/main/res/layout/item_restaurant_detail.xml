@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:background="@drawable/stroke"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/imageRes"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:src="@drawable/store_lau"
+        android:layout_marginRight="10dp"
+        android:clipToOutline="true"
+        android:layout_gravity="center_vertical"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/edtResName"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="TextView"
+            android:layout_weight="0.8"
+            android:fontFamily="@font/font_normal"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_color_white"/>
+
+        <TextView
+            android:id="@+id/edtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:fontFamily="@font/font_light_italic"
+            android:textSize="16sp"
+            android:textColor="@color/text_color_white"/>
+
+        <TextView
+            android:id="@+id/edtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:text="0919308384"
+            android:fontFamily="@font/font_light_italic"
+            android:textSize="16sp"
+            android:textColor="@color/text_color_white"/>
+
+    </LinearLayout>
+</LinearLayout>

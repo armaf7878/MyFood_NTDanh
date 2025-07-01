@@ -34,7 +34,6 @@ public class ordersDAO_NTDanh {
             orders_ntDanh.setUser_ID(cursor.getInt(cursor.getColumnIndexOrThrow("user_ID")));
             orders_ntDanh.setOrder_name(cursor.getString(cursor.getColumnIndexOrThrow("order_name")));
             orders_ntDanh.setOrder_phone(cursor.getString(cursor.getColumnIndexOrThrow("order_phone")));
-            orders_ntDanh.setOrder_status(cursor.getString(cursor.getColumnIndexOrThrow("order_status")));
             orders_ntDanhList.add(orders_ntDanh);
         }
         cursor.close();
@@ -53,7 +52,6 @@ public class ordersDAO_NTDanh {
         contentValues.put("user_ID", orders_ntDanh.getUser_ID());
         contentValues.put("order_name", orders_ntDanh.getOrder_name());
         contentValues.put("order_phone", orders_ntDanh.getOrder_phone());
-        contentValues.put("order_status", orders_ntDanh.getOrder_status());
 
         return db.insert("orders", null, contentValues);
     }

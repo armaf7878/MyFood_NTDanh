@@ -4,45 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="@drawable/stroke"
+    android:layout_margin="10dp">
 
     <ImageView
         android:id="@+id/img_ResImg_NTDanh"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:layout_weight="0.6"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:background="@drawable/rounded"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/food_quay"
+        android:clipToOutline="true"/>
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="bottom">
 
         <TextView
             android:id="@+id/txt_FoodName_NTDanh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="25sp"
-            android:text="TextView" />
+            android:textSize="15sp"
+            android:text="Food Name"
+            android:fontFamily="@font/font_light"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"/>
 
-        <TextView
-            android:id="@+id/text_FoodSize_NTDanh"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/txt_FoodPrice_NTDanh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="35sp"
-            android:text="TextView" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_normal"
+                android:textColor="#DB8069"
+                android:text="$"/>
+            <TextView
+                android:id="@+id/txt_FoodPrice_NTDanh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:fontFamily="@font/font_normal"
+                android:textColor="@color/white"
+                android:text="12.99" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

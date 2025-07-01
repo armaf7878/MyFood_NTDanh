@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Food_Detail_NTDanh;
-import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Food_NTDanh;
 import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
@@ -27,12 +25,11 @@ public class adapter_food_NTDanh extends RecyclerView.Adapter<adapter_food_NTDan
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img_ResImg_NTDanh ;
-        TextView txt_FoodName_NTDanh, text_FoodSize_NTDanh, txt_FoodPrice_NTDanh;
+        TextView txt_FoodName_NTDanh, txt_FoodPrice_NTDanh;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img_ResImg_NTDanh = itemView.findViewById(R.id.img_ResImg_NTDanh);
             txt_FoodName_NTDanh = itemView.findViewById(R.id.txt_FoodName_NTDanh);
-            text_FoodSize_NTDanh = itemView.findViewById(R.id.text_FoodSize_NTDanh);
             txt_FoodPrice_NTDanh = itemView.findViewById(R.id.txt_FoodPrice_NTDanh);
         }
     }
@@ -48,8 +45,7 @@ public class adapter_food_NTDanh extends RecyclerView.Adapter<adapter_food_NTDan
         food_NTDanh food_ntDanh = food_ntDanhList.get(position);
         holder.img_ResImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
         holder.txt_FoodName_NTDanh.setText(food_ntDanh.getFood_name());
-        holder.text_FoodSize_NTDanh.setText(food_ntDanh.getFood_type());
-        holder.txt_FoodPrice_NTDanh.setText(food_ntDanh.getFood_price().toString());
+        holder.txt_FoodPrice_NTDanh.setText(String.format("%,d", food_ntDanh.getFood_price().intValue()));
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putInt("FoodID", food_ntDanh.getFood_id());
