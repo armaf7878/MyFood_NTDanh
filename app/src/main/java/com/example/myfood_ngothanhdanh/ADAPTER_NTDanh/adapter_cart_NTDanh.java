@@ -15,19 +15,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Order_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDanh.ViewHolder> {
     private List<cart_NTDanh> cart_ntDanhList;
-    private List<Integer> checkListFoodID_NTDanh = new ArrayList<>();;
+    private List<String> checkListFoodID_NTDanh = new ArrayList<>();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     public adapter_cart_NTDanh(List<cart_NTDanh> cart_ntDanhList){
         this.cart_ntDanhList = cart_ntDanhList;
     }
@@ -58,13 +58,13 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
     @Override
     public void onBindViewHolder(@NonNull adapter_cart_NTDanh.ViewHolder holder, int position) {
         cart_NTDanh cartNtDanh = cart_ntDanhList.get(position);
-        cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(holder.itemView.getContext());
         holder.txt_quantity_NTDanh.setText(String.valueOf(cartNtDanh.getQuantity()));
-        foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(holder.itemView.getContext());
-        food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(cartNtDanh.getFoodID());
-        holder.txt_FoodName_NTDanh.setText(food_ntDanh.getFood_name());
-        holder.txt_price_NTDanh.setText(String.format("%,d",(int)(food_ntDanh.getFood_price() * cartNtDanh.getQuantity())));
-        holder.img_FoodImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
+
+        db.collection("Foods").document(cartNtDanh.getFoodID()).get().addOnSuccessListener(documentSnapshot -> {
+            holder.txt_FoodName_NTDanh.setText(documentSnapshot.getString("food_name"));
+            holder.txt_price_NTDanh.setText(String.format("%,d",(int)(documentSnapshot.getDouble("food_price") * cartNtDanh.getQuantity())));
+            Glide.with(holder.itemView.getContext()).load(documentSnapshot.getString("food_img")).into(holder.img_FoodImg_NTDanh);
+        });
 
         holder.checkBox_NTDanh.setOnClickListener(view -> {
             if (holder.checkBox_NTDanh.isChecked()){
@@ -75,41 +75,33 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
         });
 
         holder.btn_delete_NTDanh.setOnClickListener(view -> {
-            int check = cartDAO_ntDanh.delete_cartByID_NTDanh(cartNtDanh.getCartID());
-            if (check > 0 ) {
+            db.collection("Cart").document(cartNtDanh.getCartID()).delete().addOnSuccessListener(aVoid ->{
                 Toast.makeText(holder.itemView.getContext(), "Xóa thành công", Toast.LENGTH_SHORT).show();
                 cart_ntDanhList.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, cart_ntDanhList.size());
-            }else {
-                Toast.makeText(holder.itemView.getContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show();
-            }
-
+            });
         });
 
         holder.btn_incresase_NTDanh.setOnClickListener(view -> {
             int quantity = Integer.parseInt(holder.txt_quantity_NTDanh.getText().toString()) + 1;
-            int check = cartDAO_ntDanh.update_cartQuantityByID_NTDanh(cartNtDanh.getCartID(), quantity);
-            if (check > 0 ){
+            db.collection("Cart").document(cartNtDanh.getCartID()).update("quantity", quantity).addOnSuccessListener(aVoid ->{
                 holder.txt_quantity_NTDanh.setText(String.valueOf(quantity));
-                holder.txt_price_NTDanh.setText(String.format("%,d",(int)(food_ntDanh.getFood_price() * quantity)));
-            }else{
-                Toast.makeText(holder.itemView.getContext(), "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-            }
-
+                db.collection("Foods").document(cartNtDanh.getFoodID()).get().addOnSuccessListener(documentSnapshot -> {
+                    holder.txt_price_NTDanh.setText(String.format("%,d",(int)(documentSnapshot.getDouble("food_price") * quantity)));
+                });
+            });
         });
 
         holder.btn_descrease_NTDanh.setOnClickListener(view -> {
             if (Integer.parseInt(holder.txt_quantity_NTDanh.getText().toString()) > 1){
                 int quantity = Integer.parseInt(holder.txt_quantity_NTDanh.getText().toString()) - 1;
-                int check = cartDAO_ntDanh.update_cartQuantityByID_NTDanh(cartNtDanh.getCartID(), quantity);
-                if (check > 0 ){
+                db.collection("Cart").document(cartNtDanh.getCartID()).update("quantity", quantity).addOnSuccessListener(aVoid ->{
                     holder.txt_quantity_NTDanh.setText(String.valueOf(quantity));
-                    holder.txt_price_NTDanh.setText(String.format("%,d",(int)(food_ntDanh.getFood_price() * quantity)));
-                    Toast.makeText(holder.itemView.getContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(holder.itemView.getContext(), "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
-                }
+                    db.collection("Foods").document(cartNtDanh.getFoodID()).get().addOnSuccessListener(documentSnapshot -> {
+                        holder.txt_price_NTDanh.setText(String.format("%,d",(int)(documentSnapshot.getDouble("food_price") * quantity)));
+                    });
+                });
             }else {
                 Toast.makeText(holder.itemView.getContext(), "Tối thiểu", Toast.LENGTH_SHORT).show();
             }
@@ -124,7 +116,7 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
 
     public void checkListFood_NTDanh(Context context){
         Bundle bundle = new Bundle();
-        bundle.putIntegerArrayList("CartID", new ArrayList<>(checkListFoodID_NTDanh));
+        bundle.putStringArrayList("CartID", new ArrayList<>(checkListFoodID_NTDanh));
         Intent intent = new Intent(context, Order_NTDanh.class);
         intent.putExtras(bundle);
         context.startActivity(intent);

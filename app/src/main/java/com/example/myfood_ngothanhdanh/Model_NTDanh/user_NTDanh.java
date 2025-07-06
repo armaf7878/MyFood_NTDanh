@@ -1,4 +1,4 @@
-package com.example.myfood_ngothanhdanh.Modle_NTDanh;
+package com.example.myfood_ngothanhdanh.Model_NTDanh;
 
 public class user_NTDanh {
     private int user_id;

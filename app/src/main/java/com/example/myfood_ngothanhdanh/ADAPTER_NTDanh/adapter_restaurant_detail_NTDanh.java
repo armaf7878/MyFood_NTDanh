@@ -11,8 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.FoodInRes_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.restaurant_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
 public class adapter_restaurant_detail_NTDanh extends RecyclerView.Adapter<adapter_restaurant_detail_NTDanh.ViewHolder> {
@@ -44,10 +45,10 @@ public class adapter_restaurant_detail_NTDanh extends RecyclerView.Adapter<adapt
     public void onBindViewHolder(@NonNull adapter_restaurant_detail_NTDanh.ViewHolder holder, int position) {
         holder.edtAddress.setText(restaurant_ntDanh.getRes_address());
         holder.edtResName.setText(restaurant_ntDanh.getRes_name());
-        holder.imageRes.setImageResource(restaurant_ntDanh.getRes_img());
+        Glide.with(holder.itemView.getContext()).load(restaurant_ntDanh.getRes_img()).into(holder.imageRes);
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("ResID", restaurant_ntDanh.getRes_id());
+            bundle.putString("ResID", restaurant_ntDanh.getRes_id());
             Intent intent = new Intent(holder.itemView.getContext(), FoodInRes_NTDanh.class);
             intent.putExtras(bundle);
             holder.itemView.getContext().startActivity(intent);

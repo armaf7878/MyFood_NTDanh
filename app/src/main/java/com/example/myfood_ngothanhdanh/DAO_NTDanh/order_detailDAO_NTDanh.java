@@ -7,8 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.order_detail_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.order_detail_NTDanh;
 
 import java.util.ArrayList;
 import java.util.List;

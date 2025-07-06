@@ -12,10 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_cart_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyCart_NTDanh extends Fragment {
@@ -23,6 +27,7 @@ public class MyCart_NTDanh extends Fragment {
     private Button btn_Order_NTDanh;
     private RecyclerView recycler_cart_NTDanh;
     private adapter_cart_NTDanh adapterCartNtDanh;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,10 +42,23 @@ public class MyCart_NTDanh extends Fragment {
         return view;
     }
     private void loadCartItem_NTDanh(){
-        cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(getContext());
-        List<cart_NTDanh> cartList = cartDAO_ntDanh.getAll_NTDanh();
-        recycler_cart_NTDanh.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapterCartNtDanh = new adapter_cart_NTDanh(cartList);
-        recycler_cart_NTDanh.setAdapter(adapterCartNtDanh);
+        List<cart_NTDanh> cartList = new ArrayList<>();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String uid = currentUser.getUid();
+        db.collection("Cart").whereEqualTo("user_id", uid).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                cart_NTDanh cartNtDanh = new cart_NTDanh();
+                cartNtDanh.setCartID(documentSnapshot.getId());
+                cartNtDanh.setFoodID(documentSnapshot.getString("food_id"));
+                cartNtDanh.setUserID(documentSnapshot.getString("user_id"));
+                cartNtDanh.setQuantity(documentSnapshot.getDouble("quantity").intValue());
+                cartList.add(cartNtDanh);
+            }
+            recycler_cart_NTDanh.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapterCartNtDanh = new adapter_cart_NTDanh(cartList);
+            recycler_cart_NTDanh.setAdapter(adapterCartNtDanh);
+        });
+
     }
 }

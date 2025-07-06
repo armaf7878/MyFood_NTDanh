@@ -1,6 +1,4 @@
-package com.example.myfood_ngothanhdanh.Modle_NTDanh;
-
-import java.util.Date;
+package com.example.myfood_ngothanhdanh.Model_NTDanh;
 
 public class orders_NTDanh {
     private int order_id;

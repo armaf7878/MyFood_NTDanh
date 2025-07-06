@@ -4,6 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyCFNvUxX4TLpgD-z3WXzvElTxPjoVuAD1M" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyFood_NgoThanhDanh"
         tools:targetApi="31">
+        <activity android:name=".ACTIVITY_NTDanh.Register_NTDanh"
+            android:exported="false"/>
+        <activity
+            android:name=".ACTIVITY_NTDanh.FoodInCate"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -33,7 +45,7 @@
             android:name=".ACTIVITY_NTDanh.Home_NTDanh"
             android:exported="false" />
         <activity
-            android:name=".ACTIVITY_NTDanh.Register_NTDanh"
+            android:name=".ACTIVITY_NTDanh.FillInformation_NTDanh"
             android:exported="false" />
         <activity
             android:name=".ACTIVITY_NTDanh.Login_NTDanh"

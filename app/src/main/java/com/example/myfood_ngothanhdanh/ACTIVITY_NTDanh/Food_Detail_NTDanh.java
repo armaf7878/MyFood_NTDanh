@@ -1,7 +1,6 @@
 package com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,30 +11,33 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
+import com.bumptech.glide.Glide;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.restaurantDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.MainActivity;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Food_Detail_NTDanh extends AppCompatActivity {
-    private int foodID = 0;
+    private String foodID = "0", userID;
     private int quantity = 1;
     private TextView txt_foodName_NTDanh, txt_foodPrice_NTDanh, txt_FoodDes_NTDanh, txt_quantity_NTDanh, txt_ResName_NTDanh;
     private Button btn_descrease_NTDanh, btn_incresase_NTDanh, btn_cart_NTDanh;
     private ImageButton btn_back_NTDanh;
-    private ImageView img_FoodImg_NTDanh;
+    private ImageView img_FoodImg_NTDanh, img_Res;
     private boolean checked;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
         btn_back_NTDanh = findViewById(R.id.btn_back_NTDanh);
         img_FoodImg_NTDanh = findViewById(R.id.img_FoodImg_NTDanh);
         txt_ResName_NTDanh = findViewById(R.id.txt_ResName_NTDanh);
-
+        img_Res = findViewById(R.id.img_Res);
         getIDFromBundle_NTDanh();
         Log.d("foodID", String.valueOf(foodID));
         loadFoodandRes();
@@ -84,56 +86,65 @@ public class Food_Detail_NTDanh extends AppCompatActivity {
     private void getIDFromBundle_NTDanh(){
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null){
-            foodID = bundle.getInt("FoodID");
+            foodID = bundle.getString("FoodID");
         }else {
             Toast.makeText(this, "Lấy ID food thất bại", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void loadFoodandRes(){
-        if (foodID != 0){
+        if (!Objects.equals(foodID, "0")){
             foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(this);
-            food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(foodID);
-            Log.d("food_ntDanh", food_ntDanh.getFood_name());
-            txt_foodName_NTDanh.setText(food_ntDanh.getFood_name());
-            txt_foodPrice_NTDanh.setText(String.format("%,d", food_ntDanh.getFood_price().intValue()));
-            txt_FoodDes_NTDanh.setText(food_ntDanh.getFood_des());
-            img_FoodImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
+            db.collection("Foods").document(foodID).get().addOnSuccessListener(documentSnapshot -> {
+                txt_foodName_NTDanh.setText(documentSnapshot.getString("food_name"));
+                txt_foodPrice_NTDanh.setText(String.format("%,d", documentSnapshot.getDouble("food_price").intValue()));
+                txt_FoodDes_NTDanh.setText(documentSnapshot.getString("food_des"));
+                Glide.with(this).load(documentSnapshot.getString("food_img")).into(img_FoodImg_NTDanh);
 
-            int resID = food_ntDanh.getRes_id();
-            restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(this);
-            restaurant_NTDanh restaurant_ntDanh = restaurantDAO_ntDanh.getByResID_NTDanh(resID);
-            txt_ResName_NTDanh.setText(restaurant_ntDanh.getRes_name());
+                String resID =  documentSnapshot.getString("res_id");
+                db.collection("Restaurants").document(resID).get().addOnSuccessListener(documentSnapshot1 -> {
+                    txt_ResName_NTDanh.setText(documentSnapshot1.getString("res_name"));
+                    Glide.with(this).load(documentSnapshot1.getString("res_img")).into(img_Res);
+                }).addOnFailureListener(e -> {
+
+                });
+            }).addOnFailureListener(e -> {
+
+            });
         }
     }
     private void checkFoodExists_NTDanh(){
         Intent intent = new Intent(Food_Detail_NTDanh.this, MainActivity.class);
         intent.putExtra("fragment_to_open_ntdanh", "cart");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-        SharedPreferences sharedPreferences  = getSharedPreferences("Session", MODE_PRIVATE);
-        int userID  = sharedPreferences.getInt("UserID", -1);
-
-        cartDAO_NTDanh cartDAO_ntDanh = new cartDAO_NTDanh(this);
-        List<cart_NTDanh> cartList = cartDAO_ntDanh.getAll_NTDanh();
-        for (cart_NTDanh cartNtDanh1 : cartList){
-            if(cartNtDanh1.getFoodID() == foodID && cartNtDanh1.getUserID() == userID){
-                checked = true;
-            }
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null){
+            userID  = currentUser.getUid();
         }
 
-        if (checked != true){
-            startActivity(intent);// test
-            cart_NTDanh cartNtDanh = new cart_NTDanh(userID, quantity , foodID);
-            long i = cartDAO_ntDanh.insert_NTDanh(cartNtDanh);
-            if (i != -1){
-                startActivity(intent);
+        db.collection("Cart").whereEqualTo("user_id", userID).get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                if (documentSnapshot.getString("food_id").equals(foodID)){
+                    checked = true;
+                }
+            }
+
+            if (checked != true){
+                Map<String, Object> newCart = new HashMap<>();
+                newCart.put("food_id", foodID);
+                newCart.put("user_id", userID);
+                newCart.put("quantity", quantity);
+                db.collection("Cart").document().set(newCart).addOnSuccessListener(aVoid ->{
+                    Toast.makeText(this, "Thêm giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }).addOnFailureListener(e ->{
+                    Toast.makeText(this, "Thêm vào giỏ hàng thất bại", Toast.LENGTH_SHORT).show();
+                });
             }else {
-                Toast.makeText(this, "Thêm món ăn thất bại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
-        }else {
-            Toast.makeText(this, "Sản phẩm đã có trong giỏ hàng", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
-        }
+        });
     }
 }

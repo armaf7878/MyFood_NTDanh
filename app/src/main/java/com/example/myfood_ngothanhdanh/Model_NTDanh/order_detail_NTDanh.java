@@ -1,4 +1,4 @@
-package com.example.myfood_ngothanhdanh.Modle_NTDanh;
+package com.example.myfood_ngothanhdanh.Model_NTDanh;
 
 public class order_detail_NTDanh {
     private int order_detail_id;

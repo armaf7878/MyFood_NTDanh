@@ -11,7 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
+import com.bumptech.glide.Glide;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.food_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class adapter_TodayMenu_NTDanh extends RecyclerView.Adapter<adapter_Today
         food_NTDanh food_ntDanh = food_ntDanhList.get(position);
         holder.txtfoodName_NTDanh.setText(food_ntDanh.getFood_name());
         holder.txt_foodPrice_NTDanh.setText(String.valueOf(food_ntDanh.getFood_price()));
-        holder.img_FoodImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
+        Glide.with(holder.itemView.getContext()).load(food_ntDanh.getFood_img()).circleCrop().override(300, 300).into(holder.img_FoodImg_NTDanh);
 
         int color;
         switch (position % 5){

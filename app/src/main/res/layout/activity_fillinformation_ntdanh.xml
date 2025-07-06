@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ACTIVITY_NTDanh.Register_NTDanh">
+    tools:context=".ACTIVITY_NTDanh.FillInformation_NTDanh">
 
     <TextView
         android:id="@+id/textView4"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.123" />
 
     <EditText
-        android:id="@+id/edt_userName"
+        android:id="@+id/edtFullName"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="15dp"
@@ -34,7 +34,7 @@
         android:background="@drawable/edt_input_rounded_gray"
         android:ems="10"
         android:fontFamily="@font/font_normal"
-        android:hint="User Name (@gmail.com)"
+        android:hint="Full Name"
         android:inputType="text"
         android:paddingLeft="25dp"
         android:textColor="@color/text_color_white"
@@ -45,43 +45,69 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/edt_Pass"
+        android:id="@+id/edtPhone"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Phone Number"
         android:textColorHint="@color/hint_color_gray"
         android:fontFamily="@font/font_normal"
-        android:inputType="textPassword"
+        android:inputType="phone"
         android:textColor="@color/text_color_white"
         android:background="@drawable/edt_input_rounded_gray"
         android:paddingLeft="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_userName" />
+        app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
 
-    <EditText
-        android:id="@+id/edt_RePass"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:ems="10"
-        android:hint="Re-Password"
-        android:textColorHint="@color/hint_color_gray"
-        android:fontFamily="@font/font_normal"
-        android:inputType="textPassword"
-        android:textColor="@color/text_color_white"
+        android:paddingLeft="25sp"
+        android:paddingRight="25sp"
+        android:orientation="horizontal"
         android:background="@drawable/edt_input_rounded_gray"
-        android:paddingLeft="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_Pass" />
+        app:layout_constraintTop_toBottomOf="@+id/edtPhone"
+        android:gravity="center_vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:layout_weight="1"
+            android:textSize="19sp"
+            android:textColor="@color/hint_color_gray"
+            android:fontFamily="@font/font_normal"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textSize="19sp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/hint_color_gray"
+                android:fontFamily="@font/font_normal"/>
+            <RadioButton
+                android:id="@+id/radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textSize="19sp"
+                android:textColor="@color/hint_color_gray"
+                android:fontFamily="@font/font_normal"/>
+        </RadioGroup>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -92,7 +118,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_RePass">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDangKy"
@@ -105,4 +131,5 @@
             android:textColor="@color/text_color_black"
             app:cornerRadius="12dp" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

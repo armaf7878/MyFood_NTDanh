@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Login_NTDanh;
+import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.FillInformation_NTDanh;
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Register_NTDanh;
 
 

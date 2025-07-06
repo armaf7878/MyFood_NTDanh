@@ -64,8 +64,8 @@
 
     <ProgressBar
         android:id="@+id/progressBar_NTDanh"
-        android:layout_width="122dp"
-        android:layout_height="84dp"
+        android:layout_width="2dp"
+        android:layout_height="1dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:visibility="gone"

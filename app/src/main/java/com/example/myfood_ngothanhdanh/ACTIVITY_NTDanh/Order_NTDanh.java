@@ -25,18 +25,15 @@ import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.order_detailDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.ordersDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.district_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.order_detail_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.orders_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.province_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.provincewdistrict_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.district_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.order_detail_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.orders_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.province_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.provincewdistrict_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +41,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class Order_NTDanh extends AppCompatActivity {
     private EditText edt_OrderName_NTDanh, edt_OrderPhone_NTDanh, edt_OrderDetailAddress_NTDanh;
@@ -101,11 +97,11 @@ public class Order_NTDanh extends AppCompatActivity {
                         cart_NTDanh cartNtDanh = cartDAO_ntDanh.getByID_NTDanh(i);
 
                         foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(this);
-                        food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(cartNtDanh.getFoodID());
+//                        food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(cartNtDanh.getFoodID());
 
                         order_detail_NTDanh order_detail_ntDanh = new order_detail_NTDanh();
                         order_detail_ntDanh.setOrder_id(Integer.parseInt(String.valueOf(orderID)));
-                        order_detail_ntDanh.setFood_id(cartNtDanh.getFoodID());
+//                        order_detail_ntDanh.setFood_id(cartNtDanh.getFoodID());
                         order_detail_ntDanh.setQuantity(cartNtDanh.getQuantity());
                         order_detail_ntDanh.setSub_total(3500.0);
 
@@ -199,8 +195,8 @@ public class Order_NTDanh extends AppCompatActivity {
             cart_NTDanh cart_ntDanh = cartDAO_ntDanh.getByID_NTDanh(i);
 
             foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(this);
-            food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(cart_ntDanh.getFoodID());
-            sum += cart_ntDanh.getQuantity() * food_ntDanh.getFood_price();
+//            food_NTDanh food_ntDanh = foodDAO_ntDanh.getFoodByFoodID_NTDanh(cart_ntDanh.getFoodID());
+//            sum += cart_ntDanh.getQuantity() * food_ntDanh.getFood_price();
         }
         txt_Sum_NTDanh.setText(sum.toString());
     }

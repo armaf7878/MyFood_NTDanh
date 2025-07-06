@@ -11,8 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Food_Detail_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.food_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
 import java.util.List;
@@ -43,12 +44,12 @@ public class adapter_food_NTDanh extends RecyclerView.Adapter<adapter_food_NTDan
     @Override
     public void onBindViewHolder(@NonNull adapter_food_NTDanh.ViewHolder holder, int position) {
         food_NTDanh food_ntDanh = food_ntDanhList.get(position);
-        holder.img_ResImg_NTDanh.setImageResource(food_ntDanh.getFood_img());
+        Glide.with(holder.itemView.getContext()).load(food_ntDanh.getFood_img()).into(holder.img_ResImg_NTDanh);
         holder.txt_FoodName_NTDanh.setText(food_ntDanh.getFood_name());
         holder.txt_FoodPrice_NTDanh.setText(String.format("%,d", food_ntDanh.getFood_price().intValue()));
         holder.itemView.setOnClickListener(view -> {
             Bundle bundle = new Bundle();
-            bundle.putInt("FoodID", food_ntDanh.getFood_id());
+            bundle.putString("FoodID", food_ntDanh.getFood_id());
             Intent intent = new Intent(holder.itemView.getContext(), Food_Detail_NTDanh.class);
             intent.putExtras(bundle);
             holder.itemView.getContext().startActivity(intent);

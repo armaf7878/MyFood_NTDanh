@@ -7,13 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.orders_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.orders_NTDanh;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ordersDAO_NTDanh {
     private SQLiteDatabase db;

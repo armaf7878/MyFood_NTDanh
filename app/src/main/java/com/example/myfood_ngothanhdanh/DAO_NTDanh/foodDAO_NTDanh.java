@@ -7,8 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.user_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.food_NTDanh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +25,12 @@ public class foodDAO_NTDanh {
         Cursor cursor = db.rawQuery(sql, selectArgs);
         while (cursor.moveToNext()){
             food_NTDanh food_ntDanh = new food_NTDanh();
-            food_ntDanh.setFood_id(cursor.getInt(cursor.getColumnIndexOrThrow("food_id")));
+            food_ntDanh.setFood_id(cursor.getString(cursor.getColumnIndexOrThrow("food_id")));
             food_ntDanh.setFood_name(cursor.getString(cursor.getColumnIndexOrThrow("food_name")));
             food_ntDanh.setFood_des(cursor.getString(cursor.getColumnIndexOrThrow("food_des")));
-            food_ntDanh.setFood_img(cursor.getInt(cursor.getColumnIndexOrThrow("food_img")));
-            food_ntDanh.setRes_id(cursor.getInt(cursor.getColumnIndexOrThrow("res_id")));
-            food_ntDanh.setCate_id(cursor.getInt(cursor.getColumnIndexOrThrow("cate_id")));
+            food_ntDanh.setFood_img(cursor.getString(cursor.getColumnIndexOrThrow("food_img")));
+            food_ntDanh.setRes_id(cursor.getString(cursor.getColumnIndexOrThrow("res_id")));
+            food_ntDanh.setCate_id(cursor.getString(cursor.getColumnIndexOrThrow("cate_id")));
             food_ntDanh.setFood_price(cursor.getDouble(cursor.getColumnIndexOrThrow("food_price")));
             food_ntDanhList.add(food_ntDanh);
         }

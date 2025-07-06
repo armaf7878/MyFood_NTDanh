@@ -1,7 +1,7 @@
 package com.example.myfood_ngothanhdanh.API;
 
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.province_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.provincewdistrict_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.province_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.provincewdistrict_NTDanh;
 
 import java.util.List;
 

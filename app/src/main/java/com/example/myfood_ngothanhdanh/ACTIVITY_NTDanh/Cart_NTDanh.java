@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_cart_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 
 import java.util.List;

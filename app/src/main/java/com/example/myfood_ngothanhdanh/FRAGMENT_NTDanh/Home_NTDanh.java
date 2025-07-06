@@ -6,32 +6,32 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
 
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_TodayMenu_NTDanh;
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_categories_NTDanh;
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_restaurant_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.cateDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.restaurantDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cate_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cate_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.food_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.restaurant_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Home_NTDanh extends Fragment {
     private RecyclerView RecyclerRes, recycler_todayMenu_NTDanh, recycler_categories_NTDanh;
     private adapter_restaurant_NTDanh adapterRestaurantNtDanh;
-    private List<restaurant_NTDanh> restaurant_ntDanhList;
+    private List<restaurant_NTDanh> restaurant_ntDanhList = new ArrayList<>();
     private adapter_TodayMenu_NTDanh adapterTodayMenuNtDanh;
     private adapter_categories_NTDanh adapterCategoriesNtDanh;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public Home_NTDanh() {
         // Required empty public constructor
@@ -55,7 +55,7 @@ public class Home_NTDanh extends Fragment {
     }
 
     private void loadRes_NTDanh( RecyclerView RecyclerRes){
-        restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(getContext());
+//        restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(getContext());
 
 //        restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
 //        restaurant_ntDanh.setRes_name("Lẩu cua đồng quê");
@@ -78,14 +78,31 @@ public class Home_NTDanh extends Fragment {
 //        restaurant_ntDanh2.setRes_img(R.drawable.store_pho);
 //        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh2);
 
-        restaurant_ntDanhList = restaurantDAO_ntDanh.getAll();
-        RecyclerRes.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapterRestaurantNtDanh = new adapter_restaurant_NTDanh(restaurant_ntDanhList);
-        RecyclerRes.setAdapter(adapterRestaurantNtDanh);
+//        restaurant_ntDanhList = restaurantDAO_ntDanh.getAll();
+
+        db.collection("Restaurants").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
+                restaurant_ntDanh.setRes_id(documentSnapshot.getId());
+                restaurant_ntDanh.setRes_name(documentSnapshot.getString("res_name"));
+                restaurant_ntDanh.setOwner_id(documentSnapshot.getString("owner_id"));
+                restaurant_ntDanh.setRes_address(documentSnapshot.getString("res_address"));
+                restaurant_ntDanh.setRes_phone(documentSnapshot.getString("res_phone"));
+                restaurant_ntDanh.setRes_img(documentSnapshot.getString("res_img"));
+                Log.d("Image1", documentSnapshot.getString("res_img"));
+                restaurant_ntDanhList.add(restaurant_ntDanh);
+                Log.d("restaurant_ntDanhList", String.valueOf(restaurant_ntDanhList.size()));
+            }
+            RecyclerRes.setLayoutManager(new LinearLayoutManager(getContext()));
+            adapterRestaurantNtDanh = new adapter_restaurant_NTDanh(restaurant_ntDanhList);
+            RecyclerRes.setAdapter(adapterRestaurantNtDanh);
+        }).addOnFailureListener(e -> {
+            Log.e("Restaurant", "Take Date", e);
+        });
     }
 
     private void loadTodayMenu(RecyclerView recycler_todayMenu_NTDanh){
-        foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(getContext());
+//        foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(getContext());
 
 //        food_NTDanh food_ntDanh = new food_NTDanh();
 //        food_ntDanh.setFood_name("Phở Đặc Biệt");
@@ -114,19 +131,44 @@ public class Home_NTDanh extends Fragment {
 //        food_ntDanh2.setCate_id(3);
 //        foodDAO_ntDanh.insertFood_NTDanh(food_ntDanh2);
 
-        List<food_NTDanh> food_ntDanhList = foodDAO_ntDanh.getAll();
-        adapterTodayMenuNtDanh = new adapter_TodayMenu_NTDanh(food_ntDanhList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recycler_todayMenu_NTDanh.setLayoutManager(layoutManager);
-        recycler_todayMenu_NTDanh.setAdapter(adapterTodayMenuNtDanh);
+        List<food_NTDanh> food_ntDanhList = new ArrayList<>();
+        db.collection("Foods").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                food_NTDanh food_ntDanh = new food_NTDanh();
+                food_ntDanh.setFood_id(documentSnapshot.getId());
+                food_ntDanh.setRes_id(documentSnapshot.getString("res_id"));
+                food_ntDanh.setCate_id(documentSnapshot.getString("cate_id"));
+                food_ntDanh.setFood_name(documentSnapshot.getString("food_name"));
+                food_ntDanh.setFood_price(documentSnapshot.getDouble("food_price"));
+                food_ntDanh.setFood_img(documentSnapshot.getString("food_img"));
+                food_ntDanh.setFood_des(documentSnapshot.getString("food_des"));
+                food_ntDanhList.add(food_ntDanh);
+            }
+            adapterTodayMenuNtDanh = new adapter_TodayMenu_NTDanh(food_ntDanhList);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            recycler_todayMenu_NTDanh.setLayoutManager(layoutManager);
+            recycler_todayMenu_NTDanh.setAdapter(adapterTodayMenuNtDanh);
+        }).addOnFailureListener(e -> {
+            Log.e("loadTodayMenu", "Error", e);
+        });
     }
 
     private void loadCate(RecyclerView recycler_categories_NTDanh){
-        cateDAO_NTDanh cateDAO_ntDanh = new cateDAO_NTDanh(getContext());
-        List<cate_NTDanh> cate_ntDanhList = cateDAO_ntDanh.getAll();
-        adapterCategoriesNtDanh = new adapter_categories_NTDanh(cate_ntDanhList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recycler_categories_NTDanh.setLayoutManager(linearLayoutManager);
-        recycler_categories_NTDanh.setAdapter(adapterCategoriesNtDanh);
+        List<cate_NTDanh> cate_ntDanhList = new ArrayList<>();
+        db.collection("Categories").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                cate_NTDanh cate_ntDanh = new cate_NTDanh();
+                cate_ntDanh.setCate_id(documentSnapshot.getId());
+                cate_ntDanh.setCate_name(documentSnapshot.getString("cate_name"));
+                cate_ntDanh.setCate_img(documentSnapshot.getString("cate_img"));
+                cate_ntDanhList.add(cate_ntDanh);
+            }
+            adapterCategoriesNtDanh = new adapter_categories_NTDanh(cate_ntDanhList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+            recycler_categories_NTDanh.setLayoutManager(linearLayoutManager);
+            recycler_categories_NTDanh.setAdapter(adapterCategoriesNtDanh);
+        }).addOnFailureListener(e -> {
+            Log.e("loadCate", "Error", e);
+        });
     }
 }

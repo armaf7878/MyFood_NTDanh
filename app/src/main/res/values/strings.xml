@@ -2,4 +2,5 @@
     <string name="app_name">MyFood_NgoThanhDanh</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">523345224265-h428vv7bo0j56nhlcbh7948f0bj9n2oc.apps.googleusercontent.com</string>
 </resources>

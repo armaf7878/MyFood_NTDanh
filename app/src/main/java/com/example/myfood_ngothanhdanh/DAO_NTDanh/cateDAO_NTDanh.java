@@ -7,8 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cate_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cate_NTDanh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +24,9 @@ public class cateDAO_NTDanh {
         Cursor cursor = db.rawQuery(sql, selectArgs);
         while (cursor.moveToNext()){
             cate_NTDanh cateNtDanh = new cate_NTDanh();
-            cateNtDanh.setCate_id(cursor.getInt(cursor.getColumnIndexOrThrow("cate_id")));
+            cateNtDanh.setCate_id(cursor.getString(cursor.getColumnIndexOrThrow("cate_id")));
             cateNtDanh.setCate_name(cursor.getString(cursor.getColumnIndexOrThrow("cate_name")));
-            cateNtDanh.setCate_img(cursor.getInt(cursor.getColumnIndexOrThrow("cate_img")));
+            cateNtDanh.setCate_img(cursor.getString(cursor.getColumnIndexOrThrow("cate_img")));
             cate_ntDanhList.add(cateNtDanh);
         }
         cursor.close();

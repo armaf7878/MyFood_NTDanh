@@ -7,8 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.orders_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.restaurant_NTDanh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +25,11 @@ public class restaurantDAO_NTDanh {
         Cursor cursor = db.rawQuery(sql, selectArgs);
         while (cursor.moveToNext()){
             restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
-            restaurant_ntDanh.setRes_id(cursor.getInt(cursor.getColumnIndexOrThrow("res_id")));
+            restaurant_ntDanh.setRes_id(cursor.getString(cursor.getColumnIndexOrThrow("res_id")));
             restaurant_ntDanh.setRes_name(cursor.getString(cursor.getColumnIndexOrThrow("res_name")));
             restaurant_ntDanh.setRes_address(cursor.getString(cursor.getColumnIndexOrThrow("res_address")));
             restaurant_ntDanh.setRes_phone(cursor.getString(cursor.getColumnIndexOrThrow("res_phone")));
-            restaurant_ntDanh.setRes_img(cursor.getInt(cursor.getColumnIndexOrThrow("res_img")));
+            restaurant_ntDanh.setRes_img(cursor.getString(cursor.getColumnIndexOrThrow("res_img")));
             restaurant_ntDanhList.add(restaurant_ntDanh);
         }
         cursor.close();

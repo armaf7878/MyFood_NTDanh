@@ -1,4 +1,4 @@
-package com.example.myfood_ngothanhdanh.Modle_NTDanh;
+package com.example.myfood_ngothanhdanh.Model_NTDanh;
 
 public class district_NTDanh {
     private int code;

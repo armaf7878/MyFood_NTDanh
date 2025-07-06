@@ -17,20 +17,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_food_NTDanh;
 import com.example.myfood_ngothanhdanh.ADAPTER_NTDanh.adapter_restaurant_detail_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.DAO_NTDanh.restaurantDAO_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.food_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.restaurant_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.food_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.restaurant_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class FoodInRes_NTDanh extends AppCompatActivity {
-    private int resID = 0;
+    private String resID = "0";
     private TextView txt_ResName_NTDanh;
     private RecyclerView recycler_Food, recycler_ResInfo;
     private adapter_food_NTDanh adapterFoodNtDanh;
     private ImageView btn_back_NTDanh;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,7 @@ public class FoodInRes_NTDanh extends AppCompatActivity {
     private void getIDFromBundle(){
         Bundle bundle = getIntent().getExtras();
         if (bundle!=null){
-            resID = bundle.getInt("ResID");
+            resID = bundle.getString("ResID");
         }else {
             Toast.makeText(this, "Lấy ID nhà hàng thất bại", Toast.LENGTH_SHORT).show();
         }
@@ -63,33 +66,46 @@ public class FoodInRes_NTDanh extends AppCompatActivity {
     private void loadFood(){
         getIDFromBundle();
         Log.d("RESID", String.valueOf(resID));
-        if (resID != 0){
-            restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(this);
-            restaurant_NTDanh restaurant_ntDanh = restaurantDAO_ntDanh.getByResID_NTDanh(resID);
-            txt_ResName_NTDanh.setText(restaurant_ntDanh.getRes_name());
-
-            foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(this);
-            List<food_NTDanh> food_ntDanhList = foodDAO_ntDanh.getFoodByResID_NTDanh(resID);
-            if (food_ntDanhList != null){
+        if (!Objects.equals(resID, "0")){
+            List<food_NTDanh> food_ntDanhList = new ArrayList<>();
+            db.collection("Foods").whereEqualTo("res_id", resID).get().addOnSuccessListener(queryDocumentSnapshots -> {
+                for(DocumentSnapshot documentSnapshot: queryDocumentSnapshots){
+                    food_NTDanh food_ntDanh = new food_NTDanh();
+                    food_ntDanh.setFood_id(documentSnapshot.getId());
+                    food_ntDanh.setFood_name(documentSnapshot.getString("food_name"));
+                    food_ntDanh.setFood_img(documentSnapshot.getString("food_img"));
+                    food_ntDanh.setFood_price(documentSnapshot.getDouble("food_price"));
+                    food_ntDanhList.add(food_ntDanh);
+                }
                 adapterFoodNtDanh = new adapter_food_NTDanh(food_ntDanhList);
                 recycler_Food.setLayoutManager(new GridLayoutManager(this, 2));
                 recycler_Food.setAdapter(adapterFoodNtDanh);
-            }else {
-                Log.d("TEST FOOD","BUG NÈ");
-                Toast.makeText(this, "Của hàng đã hết món", Toast.LENGTH_LONG).show();
-            }
+            });
         }
     }
 
     private void loadResDetail(){
         getIDFromBundle();
         Log.d("RESID", String.valueOf(resID));
-        if (resID != 0){
-            restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(this);
-            restaurant_NTDanh restaurant_ntDanh = restaurantDAO_ntDanh.getByResID_NTDanh(resID);
-            adapter_restaurant_detail_NTDanh adapterRestaurantDetailNtDanh = new adapter_restaurant_detail_NTDanh(restaurant_ntDanh);
-            recycler_ResInfo.setLayoutManager(new LinearLayoutManager(this));
-            recycler_ResInfo.setAdapter(adapterRestaurantDetailNtDanh);
+        if (!Objects.equals(resID, "0")){
+            db.collection("Restaurants").document(resID).get().addOnSuccessListener(documentSnapshot -> {
+                restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
+                restaurant_ntDanh.setRes_name(documentSnapshot.getString("res_name"));
+                restaurant_ntDanh.setRes_address(documentSnapshot.getString("res_address"));
+                restaurant_ntDanh.setRes_phone(documentSnapshot.getString("res_phone"));
+                restaurant_ntDanh.setRes_img(documentSnapshot.getString("res_img"));
+                restaurant_ntDanh.setOwner_id(documentSnapshot.getString("owner_id"));
+
+                txt_ResName_NTDanh.setText(documentSnapshot.getString("res_name"));
+
+                adapter_restaurant_detail_NTDanh adapterRestaurantDetailNtDanh = new adapter_restaurant_detail_NTDanh(restaurant_ntDanh);
+                recycler_ResInfo.setLayoutManager(new LinearLayoutManager(this));
+                recycler_ResInfo.setAdapter(adapterRestaurantDetailNtDanh);
+            }).addOnFailureListener(e -> {
+                Log.e("loadResDetail", "Error",e);
+            });
+
+
         }
     }
 }

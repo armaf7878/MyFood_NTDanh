@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager2,
                 (tab, position) -> {
                     if (position == 0) {tab.setText("Home"); tab.setIcon(R.drawable.icon_home_selector);}
-                    if (position == 1) {tab.setText("Location"); tab.setIcon(R.drawable.icon_location_selector);}
+                    if (position == 1) {tab.setText("Near Me"); tab.setIcon(R.drawable.icon_location_selector);}
                     if (position == 2) {tab.setText("My Cart"); tab.setIcon(R.drawable.icon_cart_selector);}
                     if (position == 3) {tab.setText("Me"); tab.setIcon(R.drawable.icon_user_selector);}
                 }).attach();

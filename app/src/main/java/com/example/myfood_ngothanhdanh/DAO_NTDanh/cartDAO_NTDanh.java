@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.myfood_ngothanhdanh.Database_NTDanh.dbHelper_NTDanh;
-import com.example.myfood_ngothanhdanh.Modle_NTDanh.cart_NTDanh;
+import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,9 @@ public class cartDAO_NTDanh {
         Cursor cursor = db.rawQuery(sql, selectArgs);
         while (cursor.moveToNext()){
             cart_NTDanh cartNtDanh = new cart_NTDanh();
-            cartNtDanh.setCartID(cursor.getInt(cursor.getColumnIndexOrThrow("cart_id")));
-            cartNtDanh.setFoodID(cursor.getInt(cursor.getColumnIndexOrThrow("food_id")));
-            cartNtDanh.setUserID(cursor.getInt(cursor.getColumnIndexOrThrow("user_id")));
+            cartNtDanh.setCartID(cursor.getString(cursor.getColumnIndexOrThrow("cart_id")));
+            cartNtDanh.setFoodID(cursor.getString(cursor.getColumnIndexOrThrow("food_id")));
+            cartNtDanh.setUserID(cursor.getString(cursor.getColumnIndexOrThrow("user_id")));
             cartNtDanh.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow("quantity")));
             cart_ntDanhList.add(cartNtDanh);
         }
