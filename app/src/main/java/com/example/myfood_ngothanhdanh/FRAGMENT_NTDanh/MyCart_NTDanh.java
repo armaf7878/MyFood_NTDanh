@@ -37,7 +37,7 @@ public class MyCart_NTDanh extends Fragment {
        recycler_cart_NTDanh = view.findViewById(R.id.recycler_cart_NTDanh);
         loadCartItem_NTDanh();
        btn_Order_NTDanh.setOnClickListener(v -> {
-           adapterCartNtDanh.checkListFood_NTDanh(getContext());
+           adapterCartNtDanh.checkListFood_NTDanh(this);
         });
         return view;
     }

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:id="@+id/fragment_mycart2nd"
+    tools:context=".FRAGMENT_NTDanh.MyCart_2nd_NTDanh">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_light"
+                android:text="My Cart"
+                android:textColor="@color/text_color_white"
+                android:textSize="40sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_light"
+                android:text="Pick Food"
+                android:textColor="@color/hint_color_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_light"
+                android:text="Fill Info"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_light"
+                android:text="Payment"
+                android:textAlignment="textEnd"
+                android:textColor="@color/hint_color_gray"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="#595858"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/hint_color_gray" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#595858" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/text_color_white"
+                android:gravity="center"
+                android:text="2"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="#595858" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/circle"
+                android:backgroundTint="#595858"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@color/hint_color_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font_light"
+                android:text="Information"
+                android:textColor="@color/text_color_white"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/recycler_cart_NTDanh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_NextStep_NTDanh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtUserName_NTDanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:background="@drawable/edt_input_rounded_gray"
+                    android:hint="Full Name"
+                    android:textColorHint="@color/hint_color_gray"
+                    android:textColor="@color/text_color_white"
+                    android:fontFamily="@font/font_normal"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <EditText
+                    android:id="@+id/edtUserPhone_NTDanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:background="@drawable/edt_input_rounded_gray"
+                    android:hint="Phone No"
+                    android:textColorHint="@color/hint_color_gray"
+                    android:textColor="@color/text_color_white"
+                    android:fontFamily="@font/font_normal"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <Spinner
+                    android:id="@+id/spinner_City_NTDanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edt_input_rounded_gray"
+                    android:fontFamily="@font/font_light"
+                    android:paddingLeft="25dp"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="17sp"/>
+
+                <Spinner
+                    android:id="@+id/spinner_District_NTDanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/edt_input_rounded_gray"
+                    android:fontFamily="@font/font_light"
+                    android:paddingLeft="25dp"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="17sp"/>
+
+                <EditText
+                    android:id="@+id/edtDetailAddress_NTDanh"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
+                    android:background="@drawable/edt_input_rounded_gray"
+                    android:hint="Detail Address"
+                    android:textColorHint="@color/hint_color_gray"
+                    android:textColor="@color/text_color_white"
+                    android:fontFamily="@font/font_normal"
+                    android:paddingLeft="15dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="69dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_Coordinate_NTDanh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/edt_input_rounded_gray"
+                        android:fontFamily="@font/font_normal"
+                        android:paddingLeft="15dp"
+                        android:text="Coordinate(Optional)"
+                        android:textColor="@color/text_color_white"
+                        android:textColorHint="@color/hint_color_gray"
+                        android:textSize="17sp"
+                        android:gravity="center_vertical"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_Location_NTDanh"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/icon_location" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/map_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="16dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_NextStep_NTDanh"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:backgroundTint="@color/black"
+            android:text="Next Step"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,8 +49,13 @@ public class Location_NTDanh extends Fragment {
         View view = inflater.inflate(R.layout.fragment_location__n_t_danh, container, false);
         recycler_food_NTDanh = view.findViewById(R.id.recycler_food_NTDanh);
         customer_location_NTDanh = view.findViewById(R.id.customer_location_NTDanh);
-        getCustomerLocation_NTDanh();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getCustomerLocation_NTDanh();
     }
 
     private void requestPermission_NTDanh(){
@@ -100,6 +106,8 @@ public class Location_NTDanh extends Fragment {
     }
 
     private void resverseLocationFromGeocoding_NTDanh(){
+
+        if (!isAdded()) return;
         if (cusLat != 0.0 && cusLong != 0.0){
             Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
             try {
@@ -118,6 +126,7 @@ public class Location_NTDanh extends Fragment {
 
     private void compareDistance_NTDanh(){
         db.collection("Restaurants").get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if (!isAdded()) return;
             for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                 Double resLat = documentSnapshot.getDouble("res_Lat");
                 Double resLong = documentSnapshot.getDouble("res_Long");

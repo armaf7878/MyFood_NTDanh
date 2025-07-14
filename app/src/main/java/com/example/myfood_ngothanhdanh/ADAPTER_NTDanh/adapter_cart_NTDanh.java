@@ -1,8 +1,8 @@
 package com.example.myfood_ngothanhdanh.ADAPTER_NTDanh;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myfood_ngothanhdanh.ACTIVITY_NTDanh.Order_NTDanh;
+import com.example.myfood_ngothanhdanh.FRAGMENT_NTDanh.MyCart_2nd_NTDanh;
+import com.example.myfood_ngothanhdanh.FRAGMENT_NTDanh.MyCart_NTDanh;
 import com.example.myfood_ngothanhdanh.Model_NTDanh.cart_NTDanh;
 import com.example.myfood_ngothanhdanh.R;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -69,8 +71,14 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
         holder.checkBox_NTDanh.setOnClickListener(view -> {
             if (holder.checkBox_NTDanh.isChecked()){
                 checkListFoodID_NTDanh.add(cartNtDanh.getCartID());
+                for (String i : checkListFoodID_NTDanh){
+                    Log.d("ListFoodCheck", i);
+                }
             }else{
-                checkListFoodID_NTDanh.remove(Integer.valueOf(cartNtDanh.getCartID()));
+                checkListFoodID_NTDanh.remove(cartNtDanh.getCartID());
+                for (String i : checkListFoodID_NTDanh){
+                    Log.d("ListFoodCheck", i);
+                }
             }
         });
 
@@ -114,11 +122,15 @@ public class adapter_cart_NTDanh extends RecyclerView.Adapter<adapter_cart_NTDan
         return cart_ntDanhList.size();
     }
 
-    public void checkListFood_NTDanh(Context context){
+    public void checkListFood_NTDanh(MyCart_NTDanh fragmentA){
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("CartID", new ArrayList<>(checkListFoodID_NTDanh));
-        Intent intent = new Intent(context, Order_NTDanh.class);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
+        MyCart_2nd_NTDanh fragment = new MyCart_2nd_NTDanh();
+        fragment.setArguments(bundle);
+        fragmentA.getParentFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_mycart, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

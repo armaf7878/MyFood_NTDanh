@@ -1,4 +1,4 @@
-package com.example.myfood_ngothanhdanh.API;
+package com.example.myfood_ngothanhdanh.API_INTERFACE;
 
 import com.example.myfood_ngothanhdanh.Model_NTDanh.province_NTDanh;
 import com.example.myfood_ngothanhdanh.Model_NTDanh.provincewdistrict_NTDanh;

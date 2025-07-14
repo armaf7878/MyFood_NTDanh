@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResOwner_NTDanh.Res_Food_Edit">
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/font_normal"
+        android:text="ADD FOOD"
+        android:textAlignment="center"
+        android:textColor="@color/text_color_white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_white"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <Spinner
+                android:id="@+id/spinner_cate_NTDanh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/rounded_white"
+                android:backgroundTint="@color/hint_color_gray"
+                android:paddingLeft="15dp"
+                />
+            <EditText
+                android:id="@+id/edt_foodName_NTDanh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font_normal"
+                android:textColor="@color/text_color_white"
+                android:hint="Food Name Here"
+                android:background="@drawable/rounded_white"
+                android:backgroundTint="@color/hint_color_gray"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText
+                android:id="@+id/edt_foodPrice_NTDanh"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font_normal"
+                android:textColor="@color/text_color_white"
+                android:hint="Food Price Here"
+                android:inputType="number"
+                android:background="@drawable/rounded_white"
+                android:backgroundTint="@color/hint_color_gray"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="15dp"/>
+            <EditText
+                android:id="@+id/edt_foodDes_NTDanh"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:fontFamily="@font/font_normal"
+                android:textColor="@color/text_color_white"
+                android:hint="Food Description Here"
+                android:background="@drawable/rounded_white"
+                android:backgroundTint="@color/hint_color_gray"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="15dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_uploadImage_NTDanh"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_image_upload"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:background="@null"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_cancel_NTDanh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/hint_color_gray"
+                    android:fontFamily="@font/font_normal"
+                    app:cornerRadius="12sp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_delete_NTDanh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Delete"
+                    android:backgroundTint="@color/text_color_orange"
+                    android:fontFamily="@font/font_normal"
+                    android:layout_marginLeft="5dp"
+                    app:cornerRadius="12sp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_save_NTDanh"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/font_normal"
+                    android:layout_marginLeft="5dp"
+                    app:cornerRadius="12sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

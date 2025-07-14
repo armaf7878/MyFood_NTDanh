@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myfood_ngothanhdanh.MainActivity;
 import com.example.myfood_ngothanhdanh.R;
+import com.example.myfood_ngothanhdanh.ResOwner_NTDanh.Res_Home;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,6 +38,7 @@ public class Login_NTDanh extends AppCompatActivity {
     private ImageView btn_close_NTDanh;
     private static final int RC_SIGN_IN = 101;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,9 +128,20 @@ public class Login_NTDanh extends AppCompatActivity {
         }else {
             mAuth.signInWithEmailAndPassword(username, pass).addOnCompleteListener(task1 ->{
                 if (task1.isSuccessful()) {
-                    Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    String uid = user.getUid();
+                    firestore.collection("Users").document(uid).get().addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.getString("role").equals("customer")){
+                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, MainActivity.class));
+                            finish();
+                        } else if (documentSnapshot.getString("role").equals("res_owner")){
+                            Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, Res_Home.class));
+                            finish();
+                        }
+                    });
+
                 } else {
                     Toast.makeText(this, "Đăng nhập thất bại: " + task1.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }

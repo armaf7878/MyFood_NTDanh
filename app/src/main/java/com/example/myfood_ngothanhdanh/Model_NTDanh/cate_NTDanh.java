@@ -38,4 +38,9 @@ public class cate_NTDanh {
     public void setCate_img(String cate_img) {
         this.cate_img = cate_img;
     }
+
+    @Override
+    public String toString() {
+        return cate_name;
+    }
 }

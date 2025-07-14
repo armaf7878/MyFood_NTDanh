@@ -45,7 +45,7 @@ public class adapter_TodayMenu_NTDanh extends RecyclerView.Adapter<adapter_Today
     public void onBindViewHolder(@NonNull adapter_TodayMenu_NTDanh.ViewHolder holder, int position) {
         food_NTDanh food_ntDanh = food_ntDanhList.get(position);
         holder.txtfoodName_NTDanh.setText(food_ntDanh.getFood_name());
-        holder.txt_foodPrice_NTDanh.setText(String.valueOf(food_ntDanh.getFood_price()));
+        holder.txt_foodPrice_NTDanh.setText(String.format("%,d",food_ntDanh.getFood_price().intValue()));
         Glide.with(holder.itemView.getContext()).load(food_ntDanh.getFood_img()).circleCrop().override(300, 300).into(holder.img_FoodImg_NTDanh);
 
         int color;

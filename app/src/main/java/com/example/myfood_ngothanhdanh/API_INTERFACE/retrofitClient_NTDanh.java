@@ -1,4 +1,4 @@
-package com.example.myfood_ngothanhdanh.API;
+package com.example.myfood_ngothanhdanh.API_INTERFACE;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

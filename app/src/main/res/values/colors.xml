@@ -6,4 +6,7 @@
     <color name="text_color_white">#FFFFFF</color>
     <color name="text_color_black">#000000</color>
     <color name="hint_color_gray">#858484</color>
+    <color name="text_color_gray">#A7A7A7</color>
+    <color name="back_ground_gray">#1D1D1D</color>
+    <color name="text_color_orange">#DB8069</color>
 </resources>

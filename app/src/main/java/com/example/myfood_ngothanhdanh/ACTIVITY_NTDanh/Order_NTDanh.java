@@ -19,8 +19,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myfood_ngothanhdanh.API.provinceAPI_NTDanh;
-import com.example.myfood_ngothanhdanh.API.retrofitClient_NTDanh;
+import com.example.myfood_ngothanhdanh.API_INTERFACE.provinceAPI_NTDanh;
+import com.example.myfood_ngothanhdanh.API_INTERFACE.retrofitClient_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.cartDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.foodDAO_NTDanh;
 import com.example.myfood_ngothanhdanh.DAO_NTDanh.order_detailDAO_NTDanh;

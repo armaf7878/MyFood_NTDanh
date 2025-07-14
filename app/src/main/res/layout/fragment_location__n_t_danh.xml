@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_light"
-            android:text="14 Nguyễn Oanh, Phường 17, Quận Gò Vấp, Hồ Chí Minh"
+            android:text="Không xác định được vị trí"
             android:textColor="@color/text_color_white" />
     </LinearLayout>
 

@@ -55,30 +55,6 @@ public class Home_NTDanh extends Fragment {
     }
 
     private void loadRes_NTDanh( RecyclerView RecyclerRes){
-//        restaurantDAO_NTDanh restaurantDAO_ntDanh = new restaurantDAO_NTDanh(getContext());
-
-//        restaurant_NTDanh restaurant_ntDanh = new restaurant_NTDanh();
-//        restaurant_ntDanh.setRes_name("Lẩu cua đồng quê");
-//        restaurant_ntDanh.setRes_phone("0353991094");
-//        restaurant_ntDanh.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
-//        restaurant_ntDanh.setRes_img(R.drawable.store_lau);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh);
-//
-//        restaurant_NTDanh restaurant_ntDanh1 = new restaurant_NTDanh();
-//        restaurant_ntDanh1.setRes_name("Bánh mì Dân Tổ");
-//        restaurant_ntDanh1.setRes_phone("0353991094");
-//        restaurant_ntDanh1.setRes_address("175 Đào Duy Anh, Phường 9, Quận Phú Nhuận, Hồ Chí Minh");
-//        restaurant_ntDanh1.setRes_img(R.drawable.store_banhmi);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh1);
-//
-//        restaurant_NTDanh restaurant_ntDanh2 = new restaurant_NTDanh();
-//        restaurant_ntDanh2.setRes_name("Phở Lý Quốc Sư");
-//        restaurant_ntDanh2.setRes_phone("093323327");
-//        restaurant_ntDanh2.setRes_address("14 Nguyễn Oanh, Phường 17, Quận Gò Vấp, Hồ Chí Minh");
-//        restaurant_ntDanh2.setRes_img(R.drawable.store_pho);
-//        restaurantDAO_ntDanh.insert_NTDanh(restaurant_ntDanh2);
-
-//        restaurant_ntDanhList = restaurantDAO_ntDanh.getAll();
 
         db.collection("Restaurants").get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots){
@@ -102,34 +78,6 @@ public class Home_NTDanh extends Fragment {
     }
 
     private void loadTodayMenu(RecyclerView recycler_todayMenu_NTDanh){
-//        foodDAO_NTDanh foodDAO_ntDanh = new foodDAO_NTDanh(getContext());
-
-//        food_NTDanh food_ntDanh = new food_NTDanh();
-//        food_ntDanh.setFood_name("Phở Đặc Biệt");
-//        food_ntDanh.setFood_des("Mô tả ở đây là mô tả");
-//        food_ntDanh.setFood_img(R.drawable.food_phodacbiet);
-//        food_ntDanh.setFood_price(45000.0);
-//        food_ntDanh.setRes_id(3);
-//        food_ntDanh.setCate_id(3);
-//        foodDAO_ntDanh.insertFood_NTDanh(food_ntDanh);
-//
-//        food_NTDanh food_ntDanh1 = new food_NTDanh();
-//        food_ntDanh1.setFood_name("Bánh Donut");
-//        food_ntDanh1.setFood_des("Mô tả ở đây là mô tả");
-//        food_ntDanh1.setFood_img(R.drawable.food_donut);
-//        food_ntDanh1.setFood_price(35000.0);
-//        food_ntDanh1.setRes_id(1);
-//        food_ntDanh1.setCate_id(2);
-//        foodDAO_ntDanh.insertFood_NTDanh(food_ntDanh1);
-//
-//        food_NTDanh food_ntDanh2 = new food_NTDanh();
-//        food_ntDanh2.setFood_name("Quẩy Giòn");
-//        food_ntDanh2.setFood_des("Mô tả ở đây là mô tả");
-//        food_ntDanh2.setFood_img(R.drawable.food_quay);
-//        food_ntDanh2.setFood_price(15000.0);
-//        food_ntDanh2.setRes_id(3);
-//        food_ntDanh2.setCate_id(3);
-//        foodDAO_ntDanh.insertFood_NTDanh(food_ntDanh2);
 
         List<food_NTDanh> food_ntDanhList = new ArrayList<>();
         db.collection("Foods").get().addOnSuccessListener(queryDocumentSnapshots -> {

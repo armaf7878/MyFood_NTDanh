@@ -11,26 +11,26 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:fontFamily="@font/font_normal"
         android:text="SIGN UP"
         android:textColor="@color/text_color_white"
         android:textSize="34sp"
-        android:textStyle="bold"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edtFullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/edtFullName"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/edt_input_rounded_gray"
         android:ems="10"
         android:fontFamily="@font/font_normal"
@@ -39,97 +39,148 @@
         android:paddingLeft="25dp"
         android:textColor="@color/text_color_white"
         android:textColorHint="@color/hint_color_gray"
+        app:layout_constraintBottom_toTopOf="@+id/edtPhone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edtPhone"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:textColorHint="@color/hint_color_gray"
-        android:fontFamily="@font/font_normal"
-        android:inputType="phone"
-        android:textColor="@color/text_color_white"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/edt_input_rounded_gray"
+        android:ems="10"
+        android:fontFamily="@font/font_normal"
+        android:hint="Phone Number"
+        android:inputType="phone"
         android:paddingLeft="25dp"
+        android:textColor="@color/text_color_white"
+        android:textColorHint="@color/hint_color_gray"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtFullName" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="25sp"
         android:paddingRight="25sp"
-        android:orientation="horizontal"
-        android:background="@drawable/edt_input_rounded_gray"
-        app:layout_constraintTop_toBottomOf="@+id/edtPhone"
-        android:gravity="center_vertical">
+        app:layout_constraintBottom_toTopOf="@+id/spinner_City_NTDanh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gender"
             android:layout_weight="1"
-            android:textSize="19sp"
+            android:fontFamily="@font/font_normal"
+            android:text="Gender"
             android:textColor="@color/hint_color_gray"
-            android:fontFamily="@font/font_normal"/>
+            android:textSize="19sp" />
+
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/radio_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
-                android:textSize="19sp"
                 android:layout_marginRight="10dp"
+                android:fontFamily="@font/font_normal"
+                android:text="Male"
                 android:textColor="@color/hint_color_gray"
-                android:fontFamily="@font/font_normal"/>
+                android:textSize="19sp" />
+
             <RadioButton
                 android:id="@+id/radio_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font_normal"
                 android:text="Female"
-                android:textSize="19sp"
                 android:textColor="@color/hint_color_gray"
-                android:fontFamily="@font/font_normal"/>
+                android:textSize="19sp" />
         </RadioGroup>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <Spinner
+        android:id="@+id/spinner_City_NTDanh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:fontFamily="@font/font_light"
+        android:paddingLeft="25dp"
+        android:text="Ngô Thành Danh"
+        android:textColor="@color/text_color_white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_District_NTDanh"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDangKy"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginTop="15dp"
-            android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:text="Submit"
-            android:textColor="@color/text_color_black"
-            app:cornerRadius="12dp" />
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/spinner_District_NTDanh"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:fontFamily="@font/font_light"
+        android:paddingLeft="25dp"
+        android:text="Ngô Thành Danh"
+        android:textColor="@color/text_color_white"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/edt_DetailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_DetailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/edt_input_rounded_gray"
+        android:fontFamily="@font/font_normal"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textColor="@color/text_color_white"
+        android:hint="Detail Address"
+        android:textColorHint="@color/hint_color_gray"
+        app:layout_constraintBottom_toTopOf="@+id/btnDangKy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDangKy"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/white"
+        android:text="Submit"
+        android:textColor="@color/text_color_black"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

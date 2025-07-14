@@ -1,6 +1,11 @@
 package com.example.myfood_ngothanhdanh.Model_NTDanh;
 
-public class food_NTDanh {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class food_NTDanh implements Parcelable {
     private String food_id;
     private String food_name;
     private String food_des;
@@ -22,6 +27,32 @@ public class food_NTDanh {
 
     public food_NTDanh() {
     }
+
+    protected food_NTDanh(Parcel in) {
+        food_id = in.readString();
+        food_name = in.readString();
+        food_des = in.readString();
+        if (in.readByte() == 0) {
+            food_price = null;
+        } else {
+            food_price = in.readDouble();
+        }
+        food_img = in.readString();
+        res_id = in.readString();
+        cate_id = in.readString();
+    }
+
+    public static final Creator<food_NTDanh> CREATOR = new Creator<food_NTDanh>() {
+        @Override
+        public food_NTDanh createFromParcel(Parcel in) {
+            return new food_NTDanh(in);
+        }
+
+        @Override
+        public food_NTDanh[] newArray(int size) {
+            return new food_NTDanh[size];
+        }
+    };
 
     public String getFood_id() {
         return food_id;
@@ -77,5 +108,26 @@ public class food_NTDanh {
 
     public void setCate_id(String cate_id) {
         this.cate_id = cate_id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(food_id);
+        parcel.writeString(food_name);
+        parcel.writeString(food_des);
+        if (food_price == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(food_price);
+        }
+        parcel.writeString(food_img);
+        parcel.writeString(res_id);
+        parcel.writeString(cate_id);
     }
 }

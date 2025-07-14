@@ -92,7 +92,9 @@
             android:layout_height="64dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
-            android:text="Đăng nhập"
+            android:text="LOGIN"
+            android:fontFamily="@font/font_normal"
+            android:textStyle="bold"
             android:textColor="@color/text_color_black"
             app:cornerRadius="12dp" />
     </LinearLayout>

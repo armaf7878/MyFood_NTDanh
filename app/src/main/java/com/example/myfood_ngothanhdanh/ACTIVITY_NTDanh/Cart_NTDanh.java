@@ -36,7 +36,7 @@ public class Cart_NTDanh extends AppCompatActivity {
         adapterCartNtDanh = new adapter_cart_NTDanh(cartList);
         recycler_cart_NTDanh.setAdapter(adapterCartNtDanh);
         btn_Order_NTDanh.setOnClickListener(view -> {
-            adapterCartNtDanh.checkListFood_NTDanh(this);
+//            adapterCartNtDanh.checkListFood_NTDanh(this);
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
